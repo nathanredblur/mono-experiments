@@ -1,0 +1,8 @@
+vamos a crear un previsualizador de temas para vimium-c
+https://github.com/gdh1995/vimium-c/tree/master/front 
+
+en la carpeta examples hay algunos HTMLs de ejemplo del codigo generado por vimium-c usalos de ejemplo para nuestra app.
+
+primero escribamos un readme en la carpeta @vimium-c-theme-preview del plan de desarrollo y una lista de checks de objetivos a completar.
+
+va a ser una simple pagina en html con vanilla JS, que muestra en el lado izquierdo una caja de texto donde se pone el codigo css del thema y en el lado derecho se puede previsualizar todos los componentes de vimium-c (help, hint, find, vomnibar, cajas de texto, links y todo lo demas dems), tambien se podra previsualizar animacions de entrada del helper, o de seleccion de los hint, etc.

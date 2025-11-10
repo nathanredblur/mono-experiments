@@ -1,0 +1,1830 @@
+<span>
+  <div class="R H">
+    <div class="R Scroll UI HelpDA" id="HDlg" tabindex="0">
+      <style>
+        .R.H {
+          all: initial;
+          contain: none;
+          pointer-events: all;
+          -webkit-user-select: auto;
+          user-select: auto
+        }
+
+        #HDlg {
+          background: #fff;
+          border: 1px solid #b3b3b3;
+          border-radius: 8px;
+          box-shadow: 0 0 6px rgba(0, 0, 0, .4);
+          box-sizing: border-box;
+          contain: content;
+          left: calc(50% - 479px);
+          line-height: 130%;
+          max-height: calc(100% - 114px);
+          min-height: 25px;
+          overflow: auto;
+          overscroll-behavior: contain;
+          padding: 8px 6px 0 18px;
+          scrollbar-gutter: stable;
+          top: 52px;
+          -webkit-user-select: auto;
+          user-select: auto;
+          width: 958px
+        }
+
+        #HDlg:focus {
+          outline: 0
+        }
+
+        #HelpContent {
+          width: 920px
+        }
+
+        #HelpBanner {
+          height: 26px;
+          padding: 3px
+        }
+
+        #HelpTitle {
+          font-size: 20px;
+          line-height: 130%
+        }
+
+        #HelpLinks {
+          float: right;
+          position: relative;
+          top: 7px;
+          font-size: 0
+        }
+
+        .Vim {
+          color: #2f508e
+        }
+
+        .VimC {
+          color: #a55e18
+        }
+
+        .title2 {
+          font-size: 16px;
+          padding-left: 8px
+        }
+
+        .HelpTables {
+          border-spacing: 0;
+          color: inherit;
+          table-layout: fixed;
+          width: 920px
+        }
+
+        .HTablesTop {
+          vertical-align: top
+        }
+
+        .HelpTable {
+          border-collapse: separate;
+          border-spacing: 5.5px 3px;
+          color: inherit;
+          contain: content;
+          line-height: 130%;
+          word-break: normal
+        }
+
+        .HColumn {
+          white-space: normal;
+          font: 12px/1 "Helvetica Neue", Arial, sans-serif
+        }
+
+        .HelpTd {
+          line-height: 19.2px;
+          padding: 0;
+          vertical-align: top
+        }
+
+        .TdBottom {
+          visibility: hidden
+        }
+
+        .HDivider {
+          border-bottom: 1px solid #ddd;
+          clear: both;
+          height: 1px;
+          margin: 10px 1px
+        }
+
+        .HelpAdv {
+          display: none
+        }
+
+        .HelpDA .HelpAdv {
+          display: table-row
+        }
+
+        .HelpKeys {
+          clear: both;
+          font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+          text-align: right;
+          white-space: nowrap
+        }
+
+        .HelpLongKeys {
+          text-align: left
+        }
+
+        .HelpKey {
+          background-color: #f3f3f3;
+          border: 1px solid #ccc;
+          border-bottom: 2px solid #bbb;
+          border-radius: 3px;
+          padding: 1px 4px 0
+        }
+
+        .HelpCommandInfo {
+          font-size: 14px;
+          word-break: break-word;
+          overflow-wrap: anywhere;
+          width: 100%
+        }
+
+        .HelpCommandName {
+          font-style: italic;
+          cursor: pointer;
+          font-size: 12px
+        }
+
+        .HelpSectionTitle {
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 24px
+        }
+
+        .VimL {
+          all: initial;
+          background: 0 0;
+          border: none;
+          box-shadow: none;
+          color: #15c;
+          cursor: pointer;
+          font: inherit;
+          padding: 0;
+          text-decoration: underline
+        }
+
+        .VimL:visited {
+          color: #15c
+        }
+
+        .VimL:active {
+          color: #052577
+        }
+
+        .VimL:focus {
+          outline: 2px auto #4d90fe
+        }
+
+        .TopLink {
+          font-size: 14px;
+          margin-right: 14px
+        }
+
+        #HCls {
+          color: #555;
+          margin: 0 1px
+        }
+
+        #HCls:hover {
+          color: #000
+        }
+
+        #HCls:active,
+        #HCls:focus {
+          color: #4d90fe;
+          outline: 0
+        }
+
+        #HCloseT {
+          vertical-align: middle
+        }
+
+        #HelpFooter {
+          font-size: 13px;
+          line-height: 16px;
+          margin-bottom: 10px;
+          position: relative
+        }
+
+        #HAdv,
+        #HelpTip {
+          position: absolute;
+          top: -34px
+        }
+
+        #HelpVersion {
+          float: right
+        }
+
+        #HAdv {
+          right: 0;
+          text-decoration: none
+        }
+
+        #HAdv:hover {
+          text-decoration: underline
+        }
+
+        @media (max-width:999.9px) {
+          #HDlg {
+            left: calc(50% - 419px);
+            width: 838px
+          }
+
+          #HelpContent,
+          .HelpTables {
+            width: 800px
+          }
+        }
+
+        @media (max-width:859.9px) {
+          #HDlg {
+            left: 4px;
+            right: 4px;
+            width: auto
+          }
+
+          #HelpContent {
+            padding-right: 12px
+          }
+        }
+
+        .D>#HDlg {
+          background: #000;
+          border-color: #555;
+          color: #aab0b6
+        }
+
+        .D .Vim {
+          color: #9bf
+        }
+
+        .D .VimC {
+          color: #e6ccb3
+        }
+
+        .D #HCls,
+        .D .VimL {
+          color: #5b96f5
+        }
+
+        .D #HCls:hover,
+        .D .VimL:hover {
+          color: #8ab4f8
+        }
+
+        .D .HDivider {
+          border-color: #555
+        }
+
+        .D .HelpKey {
+          background: #18191b;
+          color: #aab0b6;
+          border-color: #666
+        }
+
+        @media (forced-colors:active) {
+          #HDlg {
+            border-radius: 0
+          }
+
+          .HelpKey {
+            border-bottom-width: 1px;
+            border-radius: 0;
+            padding: 1px 4px
+          }
+        }
+
+        .D>.Scroll::-webkit-scrollbar:horizontal,
+        .D>.Scroll::-webkit-scrollbar:vertical {
+          border-color: #555
+        }
+
+        .D>.Scroll:hover::-webkit-scrollbar-thumb {
+          background: #666
+        }
+
+        .Scroll::-webkit-scrollbar,
+        .Scroll::-webkit-scrollbar-thumb,
+        .Scroll::-webkit-scrollbar-track {
+          background: 0 0;
+          border: none;
+          border-radius: 6px;
+          box-shadow: none;
+          overflow: hidden
+        }
+
+        .Scroll::-webkit-scrollbar:vertical {
+          border-radius: 0 6px 6px 0;
+          border-left: 1px solid #ddd;
+          width: 12px
+        }
+
+        .Scroll::-webkit-scrollbar:horizontal {
+          border-radius: 0 0 6px 6px;
+          border-top: 1px solid #ddd;
+          height: 12px
+        }
+
+        .Scroll:hover::-webkit-scrollbar-thumb {
+          background: #ccc
+        }
+
+        .Scroll::-webkit-scrollbar-thumb:vertical {
+          border-radius: 0 6px 6px 0
+        }
+
+        .Scroll::-webkit-scrollbar-thumb:horizontal {
+          border-radius: 0 0 6px 6px
+        }
+
+        #HDlg.Scroll::-webkit-scrollbar-thumb:hover {
+          background: #929292
+        }
+
+        #HDlg.Scroll::-webkit-scrollbar-thumb:active {
+          background: #666
+        }
+
+        @media (forced-colors:active) {
+          .Scroll::-webkit-scrollbar-thumb:vertical {
+            border: 2px solid #ddd;
+            border-left-width: 1px;
+            border-radius: 0;
+            border-right: none
+          }
+
+          .Scroll::-webkit-scrollbar-thumb:horizontal {
+            border: 1px solid #ddd;
+            border-bottom: none;
+            border-radius: 0;
+            border-top-width: 1px
+          }
+        }
+      </style>
+      <div id="HelpContent">
+        <div id="HelpBanner"><span id="HelpTitle"><span class="Vim">Vim</span>ium <span class="VimC">C</span> - All by
+            Keyboard<span class="title2"> List of Commands</span></span> <span id="HelpLinks"><a class="VimL TopLink"
+              target="_blank" rel="noopener noreferrer" href="https://github.com/gdh1995/vimium-c/wiki">Wiki</a> <a
+              class="VimL TopLink" target="_blank" rel="noopener noreferrer"
+              href="https://support.google.com/chrome/answer/157179">Browser shortcuts</a> <button class="VimL TopLink"
+              id="HCls" title="Close"><svg xmlns="http://www.w3.org/2000/svg" id="HCloseT" width="12px" height="12px"
+                stroke="currentColor">
+                <path d="M2 2l8 8zM2 10L10 2" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg></button></span></div>
+        <div class="HDivider"></div>
+        <table class="HelpTables">
+          <tbody>
+            <tr>
+              <td class="HTablesTop">
+                <table class="HelpTable">
+                  <tbody class="HColumn">
+                    <tr>
+                      <td class="HelpTd"></td>
+                      <td class="HelpTd HelpSectionTitle">Navigating the page</td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">f</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Open a link in the current tab (use button=""/right,
+                        touch=false/true/"auto")<span class="HelpCommandName" role="button">(LinkHints.activate)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">F</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Open a link in a new tab <span class="HelpCommandName"
+                          role="button">(LinkHints.activateOpenInNewTab)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Open a link in a new tab and switch to it <span
+                          class="HelpCommandName" role="button">(LinkHints.activateOpenInNewForegroundTab)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">&lt;a-f&gt;</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Open multiple links in a new tab <span class="HelpCommandName"
+                          role="button">(LinkHints.activateWithQueue)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">&lt;c-e&gt;</span> <span class="HelpKey">j</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Scroll down (use keepHover=true|false|auto|never)<span
+                          class="HelpCommandName" role="button">(scrollDown)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">k</span> <span class="HelpKey">&lt;c-y&gt;</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Scroll up (use keepHover=true|false|auto|never)<span
+                          class="HelpCommandName" role="button">(scrollUp)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">h</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Scroll left <span class="HelpCommandName"
+                          role="button">(scrollLeft)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">l</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Scroll right <span class="HelpCommandName"
+                          role="button">(scrollRight)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">gg</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Scroll to the top of the page <span class="HelpCommandName"
+                          role="button">(scrollToTop)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">G</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Scroll to the bottom of the page <span class="HelpCommandName"
+                          role="button">(scrollToBottom)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">zH</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Scroll all the way to the left <span class="HelpCommandName"
+                          role="button">(scrollToLeft)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">zL</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Scroll all the way to the right <span class="HelpCommandName"
+                          role="button">(scrollToRight)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">d</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Scroll a page down <span class="HelpCommandName"
+                          role="button">(scrollPageDown)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">u</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Scroll a page up <span class="HelpCommandName"
+                          role="button">(scrollPageUp)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Scroll 1px down <span class="HelpCommandName"
+                          role="button">(scrollPxDown)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Scroll 1px up <span class="HelpCommandName"
+                          role="button">(scrollPxUp)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Scroll 1px left <span class="HelpCommandName"
+                          role="button">(scrollPxLeft)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Scroll 1px right <span class="HelpCommandName"
+                          role="button">(scrollPxRight)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Scroll a full page down <span class="HelpCommandName"
+                          role="button">(scrollFullPageDown)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Scroll a full page up <span class="HelpCommandName"
+                          role="button">(scrollFullPageUp)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Switch in items of a (closed) selection box (use dir=down|up,
+                        position=""|begin|end)<span class="HelpCommandName" role="button">(scrollSelect)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">r</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Reload current frame (use hard)<span class="HelpCommandName"
+                          role="button">(reload)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">&lt;a-r&gt;</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Reload N tabs <span class="HelpCommandName"
+                          role="button">(reloadTab)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">R</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Reload N-th tab (use hard)<span class="HelpCommandName"
+                          role="button">(reloadGivenTab)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Make a current tab zoom (use in, out, reset)<span
+                          class="HelpCommandName" role="button">(zoom)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Make a current tab zoom in <span class="HelpCommandName"
+                          role="button">(zoomIn)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Make a current tab zoom out <span class="HelpCommandName"
+                          role="button">(zoomOut)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Reset zoom level <span class="HelpCommandName"
+                          role="button">(zoomReset)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Modify the URL of the current tab page and visit <span
+                          class="HelpCommandName" role="button">(toggleUrl)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">gs</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">View page source <span class="HelpCommandName"
+                          role="button">(toggleViewSource)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">yy</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Copy page's info (use type=url/title/frame, decoded)<span
+                          class="HelpCommandName" role="button">(copyCurrentUrl)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Copy current tab's title <span class="HelpCommandName"
+                          role="button">(copyCurrentTitle)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">&lt;s-f1&gt;</span> <span class="HelpKey">&lt;f2&gt;</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Blur activeElement or refocus it (use flash,
+                        select=""/all/all-line/start/end)<span class="HelpCommandName"
+                          role="button">(switchFocus)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">gi</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Focus the N-th visible text box on the page and cycle using tab
+                        (use keep, select=""/all/all-line/start/end)<span class="HelpCommandName"
+                          role="button">(focusInput)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">yf</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Copy a link URL to the clipboard <span class="HelpCommandName"
+                          role="button">(LinkHints.activateCopyLinkUrl)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Copy a link text to the clipboard (use
+                        join:boolean/string)<span class="HelpCommandName"
+                          role="button">(LinkHints.activateCopyLinkText)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">p</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Open the clipboard's URL in the current tab <span
+                          class="HelpCommandName" role="button">(openCopiedUrlInCurrentTab)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">P</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Open the clipboard's URL in N new tabs <span
+                          class="HelpCommandName" role="button">(openCopiedUrlInNewTab)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">gu</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Go up the URL hierarchy (use
+                        trailingSlash=null/true/false)<span class="HelpCommandName" role="button">(goUp)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">gU</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Go to root of current URL hierarchy <span
+                          class="HelpCommandName" role="button">(goToRoot)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">yi</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Copy image to the clipboard (use richText=safe)<span
+                          class="HelpCommandName" role="button">(LinkHints.activateCopyImage)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Download image, video and audio <span class="HelpCommandName"
+                          role="button">(LinkHints.activateDownloadImage)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Show image in a new tab (use auto=true)<span
+                          class="HelpCommandName" role="button">(LinkHints.activateOpenImage)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Download link URL <span class="HelpCommandName"
+                          role="button">(LinkHints.activateDownloadLink)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Open a link in incognito window <span class="HelpCommandName"
+                          role="button">(LinkHints.activateOpenIncognito)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Open a URL directly without simulating mouse actions <span
+                          class="HelpCommandName" role="button">(LinkHints.activateOpenUrl)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Focus an element <span class="HelpCommandName"
+                          role="button">(LinkHints.activateFocus)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Select an element and hover (use showUrl=true)<span
+                          class="HelpCommandName" role="button">(LinkHints.activateHover)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Let mouse leave link <span class="HelpCommandName"
+                          role="button">(LinkHints.activateLeave)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Stop hovering at last location <span class="HelpCommandName"
+                          role="button">(LinkHints.unhoverLast)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Open or search a link text <span class="HelpCommandName"
+                          role="button">(LinkHints.activateSearchLinkText)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Select an editable area <span class="HelpCommandName"
+                          role="button">(LinkHints.activateEdit)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">yv</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Select text and enter visual mode (use visual=true, caret,
+                        then:{})<span class="HelpCommandName" role="button">(LinkHints.activateSelect)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Click selected text, focused element or the nearest clicked
+                        (use direct=true|element|sel|focus|click|sel,focus,click)<span class="HelpCommandName"
+                          role="button">(LinkHints.click)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">&lt;f1&gt;</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Simulate backspace once if focused <span
+                          class="HelpCommandName" role="button">(simulateBackspace)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Simulate dipatching arbitrary DOM event (use
+                        key="key,keyCode,code",init:{})<span class="HelpCommandName"
+                          role="button">(dispatchEvent)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">]]</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Follow the link labeled next or "&gt;" (use sed=true,
+                        patterns:string, rel:string, noRel, isNext)<span class="HelpCommandName"
+                          role="button">(goNext)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">[[</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Follow the link labeled previous or "&lt;" <span
+                          class="HelpCommandName" role="button">(goPrevious)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">gf</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Cycle forward to the next frame on the page <span
+                          class="HelpCommandName" role="button">(nextFrame)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">gF</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Select the tab's main/top frame <span class="HelpCommandName"
+                          role="button">(mainFrame)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Focus a parent frame <span class="HelpCommandName"
+                          role="button">(parentFrame)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">i</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Enter insert mode (use key:string, unhover, reset)<span
+                          class="HelpCommandName" role="button">(enterInsertMode)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">&lt;f8&gt;</span> <span class="HelpKey">v</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Enter visual mode <span class="HelpCommandName"
+                          role="button">(enterVisualMode)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">V</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Enter visual line mode <span class="HelpCommandName"
+                          role="button">(enterVisualLineMode)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">m</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Create a new mark (use swap)<span class="HelpCommandName"
+                          role="button">(Marks.activateCreate)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">`</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Go to a mark (use prefix=true, swap, mapKey)<span
+                          class="HelpCommandName" role="button">(Marks.activate)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Remove all local marks for this site <span
+                          class="HelpCommandName" role="button">(Marks.clearLocal)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Remove all global marks <span class="HelpCommandName"
+                          role="button">(Marks.clearGlobal)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Open URL (use url:string, urls:string[],
+                        reuse=newFg/current/newBg/reuse, incognito, window, position)<span class="HelpCommandName"
+                          role="button">(openUrl)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Focus a tab with given URL or open it (use url:string,
+                        prefix)<span class="HelpCommandName" role="button">(focusOrLaunch)</span>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td class="HelpTd TdBottom">&nbsp;</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="HTablesTop">
+                <table class="HelpTable">
+                  <tbody class="HColumn">
+                    <tr>
+                      <td class="HelpTd"></td>
+                      <td class="HelpTd HelpSectionTitle">Using the Vomnibar</td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">o</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Open URL, bookmark, or history entry (use keyword="",
+                        url:boolean/string)<span class="HelpCommandName" role="button">(Vomnibar.activate)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">O</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Open URL, history, … in a new tab (use keyword, url)<span
+                          class="HelpCommandName" role="button">(Vomnibar.activateInNewTab)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">b</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Open a bookmark <span class="HelpCommandName"
+                          role="button">(Vomnibar.activateBookmarks)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">B</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Open a bookmark in a new tab <span class="HelpCommandName"
+                          role="button">(Vomnibar.activateBookmarksInNewTab)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Open a history <span class="HelpCommandName"
+                          role="button">(Vomnibar.activateHistory)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Open a history in a new tab <span class="HelpCommandName"
+                          role="button">(Vomnibar.activateHistoryInNewTab)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">T</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Search through your open tabs <span class="HelpCommandName"
+                          role="button">(Vomnibar.activateTabs)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">ge</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Edit the current URL <span class="HelpCommandName"
+                          role="button">(Vomnibar.activateEditUrl)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">gE</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Edit the current URL and open in a new tab <span
+                          class="HelpCommandName" role="button">(Vomnibar.activateEditUrlInNewTab)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Edit a link text on Vomnibar (use url, newtab, then:{})<span
+                          class="HelpCommandName" role="button">(LinkHints.activateOpenVomnibar)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">gn</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Toggle styles of vomnibar page (use style=dark, current)<span
+                          class="HelpCommandName" role="button">(toggleVomnibarStyle)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd"></td>
+                      <td class="HelpTd HelpSectionTitle">Using find</td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">/</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Enter find mode (use last, selected=true)<span
+                          class="HelpCommandName" role="button">(enterFindMode)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">n</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Cycle forward to the next find match <span
+                          class="HelpCommandName" role="button">(performFind)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">N</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Cycle backward to the previous find match <span
+                          class="HelpCommandName" role="button">(performBackwardsFind)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">&lt;a-n&gt;</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Find the second or even earlier query words <span
+                          class="HelpCommandName" role="button">(performAnotherFind)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Find the selected text (use selected=line/any/auto-line)<span
+                          class="HelpCommandName" role="button">(findSelected)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Find the selected text, searching backwards <span
+                          class="HelpCommandName" role="button">(findSelectedBackwards)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Clear find mode history <span class="HelpCommandName"
+                          role="button">(clearFindHistory)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd"></td>
+                      <td class="HelpTd HelpSectionTitle">Navigating history</td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">H</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Go back in history (use reuse=current/newBg/newFg)<span
+                          class="HelpCommandName" role="button">(goBack)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">L</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Go forward in history <span class="HelpCommandName"
+                          role="button">(goForward)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">&lt;a-s-r&gt;</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Reopen current page <span class="HelpCommandName"
+                          role="button">(reopenTab)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd"></td>
+                      <td class="HelpTd HelpSectionTitle">Manipulating tabs</td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys HelpLongKeys" colspan="2">
+                        <span class="HelpKey">&lt;a-s-c&gt;</span> <span class="HelpKey">gt</span> <span
+                          class="HelpKey">K</span> <span class="HelpKey">&lt;a-v&gt;</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Go one tab right (use blur, wrap=true)<span
+                          class="HelpCommandName" role="button">(nextTab)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">&lt;a-c&gt;</span> <span class="HelpKey">gT</span> <span
+                          class="HelpKey">J</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Go one tab left (use blur, wrap=true)<span
+                          class="HelpCommandName" role="button">(previousTab)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">g0</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Go to the first N-th tab <span class="HelpCommandName"
+                          role="button">(firstTab)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">g$</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Go to the last N-th tab <span class="HelpCommandName"
+                          role="button">(lastTab)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">t</span> <span class="HelpKey">&lt;a-t&gt;</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Create new tabs <span class="HelpCommandName"
+                          role="button">(createTab)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">yt</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Duplicate current tab for N times <span class="HelpCommandName"
+                          role="button">(duplicateTab)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">x</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Close N tabs (use keepWindow=""/always, mayClose,
+                        goto=""/left/right/previous)<span class="HelpCommandName" role="button">(removeTab)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Close N-th tab on the right <span class="HelpCommandName"
+                          role="button">(removeRightTab)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">X</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Restore closed tabs <span class="HelpCommandName"
+                          role="button">(restoreTab)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Restore the last N-th tab <span class="HelpCommandName"
+                          role="button">(restoreGivenTab)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Discard some other tabs <span class="HelpCommandName"
+                          role="button">(discardTab)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">W</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Move tab to next window (use last, position, right=true,
+                        tabs)<span class="HelpCommandName" role="button">(moveTabToNextWindow)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Move N tabs to new window (use limited=null/true/false)<span
+                          class="HelpCommandName" role="button">(moveTabToNewWindow)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Make tab in incognito window <span class="HelpCommandName"
+                          role="button">(moveTabToIncognito)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Collect all tabs into current window <span
+                          class="HelpCommandName" role="button">(joinTabs)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Sort all tabs in current window (use
+                        sort=recency|createTime)<span class="HelpCommandName" role="button">(sortTabs)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">&lt;a-p&gt;</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Pin or unpin N tabs <span class="HelpCommandName"
+                          role="button">(togglePinTab)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">&lt;a-m&gt;</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Mute or unmute current tab (use all, other)<span
+                          class="HelpCommandName" role="button">(toggleMuteTab)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">^</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Go to previously-visited tab on current window (use blur,
+                        acrossWindows, onlyActive)<span class="HelpCommandName" role="button">(visitPreviousTab)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Close all tabs on the left (use $count=0)<span
+                          class="HelpCommandName" role="button">(closeTabsOnLeft)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Close all tabs on the right (use $count=0)<span
+                          class="HelpCommandName" role="button">(closeTabsOnRight)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Close all other tabs (use
+                        filter=""/url/url+hash/url+title)<span class="HelpCommandName"
+                          role="button">(closeOtherTabs)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">&lt;&lt;</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Move tab to the left (use group=true)<span
+                          class="HelpCommandName" role="button">(moveTabLeft)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">&gt;&gt;</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Move tab to the right (use group=true)<span
+                          class="HelpCommandName" role="button">(moveTabRight)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Toggle the site's content settings (use type=images)<span
+                          class="HelpCommandName" role="button">(toggleContentSetting)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Enable the site's ContentSetting in incognito window <span
+                          class="HelpCommandName" role="button">(enableContentSettingTemp)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Clear extension's content settings <span
+                          class="HelpCommandName" role="button">(clearContentSettings)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Copy title/URL info of a current window (use format="${title}:
+                        ${url}", join:true/string, decoded)<span class="HelpCommandName"
+                          role="button">(copyWindowInfo)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Capture visible area of current tab <span
+                          class="HelpCommandName" role="button">(captureTab)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Change window status (use states="normal,maximized")<span
+                          class="HelpCommandName" role="button">(toggleWindow)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd"></td>
+                      <td class="HelpTd HelpSectionTitle">Miscellaneous</td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <span class="HelpKey">?</span>
+                      </td>
+                      <td class="HelpTd HelpCommandInfo">Show help <span class="HelpCommandName"
+                          role="button">(showHelp)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Copy selected text or current frame's title or URL (use text:
+                        string, url, decoded)<span class="HelpCommandName" role="button">(autoCopy)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Open selected or copied text in a new tab <span
+                          class="HelpCommandName" role="button">(autoOpen)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Search selected or copied text using current search engine (use
+                        copied=true, selected=true)<span class="HelpCommandName" role="button">(searchAs)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Redo search in another search engine (use keyword,
+                        reuse=current/newFg/newBg/reuse)<span class="HelpCommandName"
+                          role="button">(searchInAnother)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Show a tip on the HUD (use text:string)<span
+                          class="HelpCommandName" role="button">(showTip)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Open a bookmark (folder) (use title, path)<span
+                          class="HelpCommandName" role="button">(openBookmark)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Add tabs into a bookmark folder (use folder:string)<span
+                          class="HelpCommandName" role="button">(addBookmark)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Add or disable CSS styles (use id/selector:string, css:
+                        string)<span class="HelpCommandName" role="button">(toggleStyle)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Toggle the other link hints (use value:string)<span
+                          class="HelpCommandName" role="button">(toggleLinkHintCharacters)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Send editing action to browser (use run:string, dom=false)<span
+                          class="HelpCommandName" role="button">(editText)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Toggle switch only on current page (use key:string,
+                        [value:any])<span class="HelpCommandName" role="button">(toggleSwitchTemp)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Pass the next keys to the page (use expect:string, normal)<span
+                          class="HelpCommandName" role="button">(passNextKey)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Debug the background page <span class="HelpCommandName"
+                          role="button">(debugBackground)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">reset to normal mode <span class="HelpCommandName"
+                          role="button">(reset)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Select and run another mapped key sequence (use expect:Envs,
+                        keys:KeySequence[]|string)<span class="HelpCommandName" role="button">(runKey)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Send message to another extension (use id:string, data:any,
+                        raw)<span class="HelpCommandName" role="button">(sendToExtension)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Display confirmation dialog and wait (use ask:string, $then,
+                        $else)<span class="HelpCommandName" role="button">(confirm)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Do nothing <span class="HelpCommandName"
+                          role="button">(blank)</span>
+                      </td>
+                    </tr>
+                    <tr class="HelpAdv">
+                      <td class="HelpTd HelpKeys"></td>
+                      <td class="HelpTd HelpCommandInfo">Close the bottom download bar elegantly <span
+                          class="HelpCommandName" role="button">(closeDownloadBar)</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd TdBottom">&nbsp;</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="HDivider"></div>
+        <div id="HelpFooter">
+          <div id="HelpTip">Tip: Click a command name to copy it to the clipboard.</div><button class="VimL"
+            id="HAdv"><span data-s="Show" data-h="Hide">Hide</span><span> advanced commands</span></button>
+          <div id="HelpVersion">Version <a class="VimL" target="_blank" rel="noopener noreferrer"
+              href="https://github.com/gdh1995/vimium-c/blob/master/RELEASE-NOTES.md#v2122">2.12.2</a></div>Enjoying
+          <span class="Vim">Vim</span>ium <span class="VimC">C</span>? <a class="VimL" target="_blank"
+            rel="noopener noreferrer"
+            href="https://chrome.google.com/webstore/detail/vimium-c-all-by-keyboard/hfjbmagddngcpeloejdejnfgbamkjaeg/reviews">Review
+            on Chrome Web Store</a>; <a class="VimL" target="_blank" rel="noopener noreferrer"
+            href="https://github.com/gdh1995/vimium-c">Star it on GitHub</a>; <a class="VimL" target="_blank"
+            rel="noopener noreferrer" href="https://gitee.com/gdh1995/vimium-c">Star it on Gitee</a>; <a class="VimL"
+            target="_blank" rel="noopener noreferrer" href="https://github.com/gdh1995/vimium-c#donate">Donate</a>.
+          Found a bug? <a class="VimL" rel="noopener noreferrer" target="_blank"
+            href="https://github.com/gdh1995/vimium-c/issues">Report it here</a>.<br>Credits: <a class="VimL"
+            target="_blank" rel="noopener noreferrer" href="https://github.com/philc/vimium">Vimium</a> (the original
+          project), <a class="VimL" target="_blank" rel="noopener noreferrer"
+            href="https://github.com/fengyuanchen/viewerjs">Viewer.js</a> by <i>Chen Fengyuan</i> and <a class="VimL"
+            target="_blank" rel="noopener noreferrer" href="https://github.com/silentmatt/expr-eval">JavaScript
+            Expression Evaluator</a> by <i>Matthew Crumley</i>.
+        </div>
+      </div>
+    </div>
+  </div>
+  <style>
+    :host {
+      display: contents !important
+    }
+
+    :host:before,
+    :host:after {
+      display: none !important
+    }
+
+    .R {
+      all: initial;
+      color: #000;
+      contain: layout style;
+      direction: ltr;
+      font: 12px/1 "Helvetica Neue", Arial, sans-serif;
+      pointer-events: none;
+      position: fixed;
+      user-select: none;
+      z-index: 2147483647
+    }
+
+    .HM {
+      font-weight: bold;
+      position: absolute;
+      white-space: nowrap
+    }
+
+    .DLG::backdrop {
+      background: #0000
+    }
+
+    .LH {
+      background: linear-gradient(#fff785, #ffc542);
+      border: 0.01px solid #e3be23;
+      border-radius: 3px;
+      box-shadow: 0 3px 5px #0000004d;
+      box-sizing: border-box;
+      contain: layout style;
+      overflow: hidden;
+      padding: 2.5px 3px 2px;
+      position: absolute
+    }
+
+    .IH {
+      background: #fff7854d;
+      border: 0.01px solid #c38a22;
+      position: absolute
+    }
+
+    .IHS {
+      background: #f664;
+      border-color: #933
+    }
+
+    .HUD,
+    .TEE {
+      bottom: -1px;
+      font-size: 14px;
+      height: 20px;
+      line-height: 16px;
+      max-width: 336px;
+      min-width: 152px;
+      overflow: hidden;
+      padding: 4px 4px 1px;
+      right: 152px;
+      text-overflow: ellipsis;
+      white-space: nowrap
+    }
+
+    .HUD:after {
+      background: #eee;
+      border-radius: 4px 4px 0 0;
+      border: 0.01px solid #bbb;
+      content: "";
+      position: absolute;
+      z-index: -1
+    }
+
+    .HL {
+      max-width: 60vw;
+      right: -4px;
+      padding-right: 8px
+    }
+
+    .HUD.UI {
+      cursor: text;
+      height: 24px
+    }
+
+    .Find {
+      cursor: text;
+      position: static;
+      width: 100%
+    }
+
+    .Flash {
+      box-shadow: 0 0 4px 2px #4183c4;
+      padding: 1px
+    }
+
+    .AbsF {
+      padding: 0;
+      position: absolute
+    }
+
+    .Sel {
+      box-shadow: 0 0 4px 2px #fa0
+    }
+
+    .Frame {
+      border: 5px solid #ff0
+    }
+
+    .Frame,
+    .DLG,
+    .HUD:after {
+      box-sizing: border-box;
+      height: 100%;
+      left: 0;
+      top: 0;
+      width: 100%
+    }
+
+    .Omnibar {
+      left: max(10vw - 12px, 50vw - 972px);
+      height: 520px;
+      top: 64px;
+      width: min(80vw + 24px, 1944px)
+    }
+
+    .O2 {
+      left: max(10% - 12px, 50% - 972px);
+      width: min(80% + 24px, 1944px)
+    }
+
+    .BH {
+      color: #902809
+    }
+
+    .MC,
+    .MH {
+      color: #d4ac3a
+    }
+
+    .One {
+      border-color: #fa7
+    }
+
+    .UI,
+    .DLG {
+      color-scheme: light;
+      pointer-events: all
+    }
+
+    .DLG {
+      position: fixed
+    }
+
+    .PO {
+      all: initial;
+      left: 0;
+      position: fixed;
+      top: 0
+    }
+
+    .D>.LH {
+      background: linear-gradient(#cb0, #c80)
+    }
+
+    .HUD.D {
+      color: #ccc
+    }
+
+    .HUD.D:after {
+      background: #222
+    }
+
+    @media(forced-colors:active) {
+      .R {
+        border-radius: 0
+      }
+
+      .HM>.LH,
+      .HUD:after {
+        background: #000;
+        border-radius: 0
+      }
+
+      .Flash {
+        outline: 4px solid #fff
+      }
+    }
+
+    /* ====== ANIMATIONS (subtle) ====== */
+    @keyframes fadeIn {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    @keyframes pulseGlow {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 rgba(0, 0, 0, 0)
+      }
+
+      50% {
+        box-shadow: 0 0 20px rgba(181, 107, 255, .45), 0 0 28px rgba(74, 163, 255, .35)
+      }
+    }
+
+    /* ====== SHARED COLORS ====== */
+    :root {
+      --bg: #0a0b15;
+      --panel1: #151836;
+      --panel2: #0c0f26;
+      --violet: #b56bff;
+      --blue: #4aa3ff;
+      --rose: #ff4db8;
+      --amber: #ffd366;
+      --white: #f5f7ff;
+      --sub: #c7cfe6;
+      --key-bg: #0f1222;
+      --hint-bg: #1a1d2e;
+      --border: #2a2f48;
+    }
+
+    /* ====== LINK STYLE (must look clickable) ====== */
+    a,
+    .VimL {
+      color: var(--amber);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 2px;
+    }
+
+    a:hover,
+    .VimL:hover {
+      color: var(--rose);
+    }
+
+    a:visited,
+    .VimL:visited {
+      color: #ffe39b;
+    }
+
+    /* =========================================================
+   VIMIUM‑C UI THEME (SOLID DARK, NO TRANSPARENCY)
+   ========================================================= */
+
+    /* Base overlay text */
+    .R {
+      color: var(--white) !important;
+      text-shadow: none !important;
+      font-family: "Inter", "JetBrains Mono", system-ui, -apple-system, Segoe UI, Roboto, sans-serif !important;
+    }
+
+    /* HELP DIALOG */
+    #HDlg {
+      background: linear-gradient(135deg, #151836 0%, #0c0f26 100%) !important;
+      color: #f5f7ff !important;
+      border: 1px solid #2a2f48 !important;
+      box-shadow: 0 10px 40px #05060d !important;
+      animation: fadeIn .2s ease-out;
+      opacity: 1 !important;
+    }
+
+    #HelpBanner {
+      border-bottom: 1px solid #8d61d9 !important;
+      background: transparent !important;
+    }
+
+    #HelpTitle {
+      color: #f5f7ff !important;
+    }
+
+    .HelpSectionTitle {
+      color: #b56bff !important;
+      border-bottom: 1px solid #a77bf7 !important;
+      background: transparent !important;
+    }
+
+    .title2,
+    .HelpCommandName {
+      color: #ffd366 !important;
+    }
+
+    .HelpCommandInfo {
+      color: #c7cfe6 !important;
+    }
+
+    /* Help Keys (high contrast) */
+    .HelpKey {
+      background: #0f1222 !important;
+      color: #f5f7ff !important;
+      border: 1px solid #2a2f48 !important;
+      box-shadow: none !important;
+      text-shadow: none !important;
+      opacity: 1 !important;
+    }
+
+    /* HINTS — solid dark, readable */
+    .LH {
+      background: #1a1d2e !important;
+      color: #f5f7ff !important;
+      border: 2px solid #2a2f48 !important;
+      box-shadow: none !important;
+      opacity: 1 !important;
+      -webkit-text-fill-color: #f5f7ff !important;
+      transition: transform .12s ease, border-color .12s ease;
+      animation: fadeIn .2s ease-out;
+    }
+
+    /* Hint type borders */
+    .LH[data-type="link"] {
+      border-color: #4aa3ff !important;
+    }
+
+    .LH[data-type="input"],
+    .LH[data-type="editable"],
+    .LH[data-type="textbox"] {
+      border-color: #b56bff !important;
+    }
+
+    .LH[data-type="button"],
+    .LH[data-type="control"],
+    .LH[data-type="aria-button"] {
+      border-color: #ff4db8 !important;
+    }
+
+    .LH[data-type="frame"],
+    .BH {
+      border-color: #4aa3ff !important;
+      color: #f5f7ff !important;
+      background: #1a1d2e !important;
+    }
+
+    /* Selected / hover state */
+    .LH:hover,
+    .LH.active,
+    .LH[aria-selected="true"],
+    .LH[data-selected="true"] {
+      transform: scale(1.06);
+      border-color: #b56bff !important;
+      animation: pulseGlow .5s ease-out;
+    }
+
+    /* HUD / TEE (find input in-page) */
+    .HUD,
+    .TEE,
+    .r {
+      background: linear-gradient(135deg, #151836 0%, #0c0f26 100%) !important;
+      color: #f5f7ff !important;
+      border: 1px solid #2a2f48 !important;
+      box-shadow: none !important;
+      opacity: 1 !important;
+      animation: fadeIn .2s ease-out;
+    }
+
+    #s {
+      color: #b56bff !important;
+    }
+
+    #c {
+      color: #ffd366 !important;
+    }
+
+    /* Selection color inside overlays */
+    ::selection {
+      background: #7e57c2 !important;
+      color: #ffffff !important;
+    }
+  </style>
+  <div class="R HUD" style="opacity: 0; visibility: hidden;"></div>
+</span>
