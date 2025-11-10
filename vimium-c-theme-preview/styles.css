@@ -154,15 +154,22 @@ body {
 .preview-wrapper {
     position: relative;
     min-height: 120px;
-    padding: 15px;
     background: #ffffff;
     border-radius: 4px;
     border: 1px dashed #ccc;
+    overflow: hidden;
 }
 
 .compact .preview-wrapper {
     min-height: 80px;
-    padding: 10px;
+}
+
+/* Iframe Styles */
+.preview-iframe {
+    width: 100%;
+    border: none;
+    display: block;
+    background: transparent;
 }
 
 /* Help Dialog Preview */
@@ -171,85 +178,52 @@ body {
 }
 
 #help-preview .preview-wrapper {
-    min-height: 200px;
-    max-height: 300px;
-    overflow: auto;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 10px;
+    min-height: 280px;
+    height: 280px;
 }
 
-#HDlg {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    max-width: 100%;
-    max-height: 280px;
-    padding: 6px 4px 0 12px;
-    transform: scale(0.85);
-    transform-origin: top left;
-}
-
-#HelpContent {
-    max-width: 100%;
-}
-
-#HelpBanner {
-    height: 22px;
-}
-
-#HelpTitle {
-    font-size: 16px;
+#help-preview .preview-iframe {
+    height: 280px;
 }
 
 /* Vomnibar Preview */
 #vomnibar-preview .preview-wrapper {
-    min-height: 150px;
-    padding: 15px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    min-height: 300px;
+    height: 300px;
 }
 
-.vomnibar-preview {
-    width: 100%;
-    max-width: 600px;
+#vomnibar-preview .preview-iframe {
+    height: 300px;
 }
 
 /* Hints Preview */
 #hints-preview .preview-wrapper {
-    min-height: 140px;
-    position: relative;
-    background: #ffffff;
-    padding: 10px;
+    min-height: 280px;
+    height: 280px;
 }
 
-.hints-wrapper {
-    position: relative;
-    min-height: 120px;
-}
-
-.R.HM {
-    transform: scale(0.9);
-    transform-origin: top left;
+#hints-preview .preview-iframe {
+    height: 280px;
 }
 
 /* Find Mode Preview */
 #find-preview .preview-wrapper {
-    min-height: 60px;
-    display: flex;
-    align-items: center;
-    padding: 10px;
+    min-height: 100px;
+    height: 100px;
+}
+
+#find-preview .preview-iframe {
+    height: 100px;
 }
 
 /* HUD Preview */
 #hud-preview .preview-wrapper {
-    min-height: 80px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: 10px;
+    min-height: 100px;
+    height: 100px;
+}
+
+#hud-preview .preview-iframe {
+    height: 100px;
 }
 
 /* Message Notification */
@@ -323,14 +297,3 @@ body {
         width: 100%;
     }
 }
-
-/* Ensure preview components are visible */
-.preview-wrapper .R {
-    position: relative !important;
-    z-index: 1;
-}
-
-.preview-wrapper .R.H {
-    position: relative !important;
-}
-
