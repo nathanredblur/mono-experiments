@@ -64,12 +64,14 @@ a:visited, .VimL:visited { color: #ffe39b !important; }
 .LH {
   background: #1a1d2e !important;
   color: #f5f7ff !important;
-  border: 2px solid #2a2f48 !important;
   box-shadow: none !important;
   opacity: 1 !important;
-  -webkit-text-fill-color: #f5f7ff !important;
   transition: transform .12s ease, border-color .12s ease;
   animation: fadeIn .2s ease-out;
+}
+
+.MC {
+  color: #ffd366 !important;
 }
 
 /* Hint type borders */
