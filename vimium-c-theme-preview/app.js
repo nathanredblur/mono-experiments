@@ -5,9 +5,11 @@ const cssEditor = document.getElementById("css-editor");
 const themeUrlInput = document.getElementById("theme-url-input");
 const loadUrlBtn = document.getElementById("load-url-btn");
 const resetBtn = document.getElementById("reset-btn");
+const themeDropdown = document.getElementById("theme-dropdown");
 
 // Get all preview iframes
 let iframes = [];
+let availableThemes = [];
 
 // Wait for all iframes to load
 function waitForIframes() {
@@ -30,6 +32,72 @@ function waitForIframes() {
       });
     });
   });
+}
+
+// Load themes from JSON
+async function loadThemesList() {
+  try {
+    const response = await fetch("themes.json");
+    availableThemes = await response.json();
+    populateThemeDropdown();
+  } catch (error) {
+    console.error("Error loading themes list:", error);
+    showMessage("Error loading themes list", "error");
+  }
+}
+
+// Populate theme dropdown
+function populateThemeDropdown() {
+  // Clear existing options except the first one
+  themeDropdown.innerHTML = '<option value="">Select a theme...</option>';
+
+  // Add each theme as an option
+  availableThemes.forEach((theme, index) => {
+    const option = document.createElement("option");
+    option.value = index;
+    option.textContent = `${theme.name}${
+      theme.author ? ` - by ${theme.author}` : ""
+    }`;
+    if (theme.description) {
+      option.title = theme.description;
+    }
+    themeDropdown.appendChild(option);
+  });
+}
+
+// Load theme from dropdown selection
+async function loadThemeFromDropdown(themeIndex) {
+  const theme = availableThemes[themeIndex];
+  if (!theme) return;
+
+  if (!theme.url) {
+    // Reset to default
+    resetTheme();
+    return;
+  }
+
+  try {
+    showMessage(`Loading ${theme.name}...`, "info");
+
+    if (theme.local) {
+      // Load local theme
+      const response = await fetch(theme.url);
+      if (!response.ok) {
+        throw new Error(`Failed to load theme: ${response.statusText}`);
+      }
+      const css = await response.text();
+      cssEditor.value = css;
+      applyTheme(css);
+      saveThemeToStorage(css);
+      showMessage(`${theme.name} loaded successfully!`, "success");
+    } else {
+      // Load remote theme
+      await loadThemeFromUrl(theme.url);
+    }
+  } catch (error) {
+    console.error("Error loading theme:", error);
+    showMessage(`Error loading ${theme.name}: ${error.message}`, "error");
+  }
 }
 
 // Convert GitHub URL to raw URL
@@ -174,11 +242,23 @@ themeUrlInput.addEventListener("keypress", (e) => {
 resetBtn.addEventListener("click", () => {
   if (confirm("Clear all CSS? This will remove your current theme.")) {
     resetTheme();
+    themeDropdown.value = ""; // Reset dropdown
+  }
+});
+
+// Theme dropdown change
+themeDropdown.addEventListener("change", (e) => {
+  const themeIndex = e.target.value;
+  if (themeIndex !== "") {
+    loadThemeFromDropdown(parseInt(themeIndex));
   }
 });
 
 // Initialize
 async function init() {
+  // Load themes list
+  await loadThemesList();
+
   // Wait for all iframes to load
   await waitForIframes();
 

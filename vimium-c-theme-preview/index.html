@@ -13,11 +13,20 @@
       <div class="editor-panel">
         <div class="editor-header">
           <h1>Vimium-C Theme Previewer</h1>
+          
+          <!-- Theme Selector -->
+          <div class="theme-selector">
+            <label for="theme-dropdown">Quick Load Theme:</label>
+            <select id="theme-dropdown" class="theme-dropdown">
+              <option value="">Select a theme...</option>
+            </select>
+          </div>
+
           <div class="editor-controls">
             <input
               type="text"
               id="theme-url-input"
-              placeholder="GitHub URL or Raw URL"
+              placeholder="Or paste GitHub URL / Raw URL"
               class="url-input"
             />
             <button id="load-url-btn" class="btn btn-primary">

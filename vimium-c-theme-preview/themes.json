@@ -1,0 +1,108 @@
+[
+  {
+    "name": "Default (No Theme)",
+    "description": "Vimium-C default appearance",
+    "author": "Vimium-C",
+    "url": "",
+    "local": false
+  },
+  {
+    "name": "Neuro Core",
+    "description": "Dark theme with purple/blue accents and subtle animations",
+    "author": "Nathan Redblur",
+    "url": "themes/neuro-core.css",
+    "local": true
+  },
+  {
+    "name": "Vimium Dark",
+    "description": "Classic dark theme for Vimium",
+    "author": "Foldex",
+    "url": "https://raw.githubusercontent.com/Foldex/vimium-dark-themes/refs/heads/master/vimium-dark.css",
+    "local": false
+  },
+  {
+    "name": "Simply Dark",
+    "description": "Simple and clean dark theme",
+    "author": "ysjn",
+    "url": "https://raw.githubusercontent.com/ysjn/vimium-simply-dark/refs/heads/master/vimium-simply-dark.css",
+    "local": false
+  },
+  {
+    "name": "Vimium Snow",
+    "description": "Light theme with snowy aesthetics",
+    "author": "dermoumi",
+    "url": "https://raw.githubusercontent.com/dermoumi/vimium-snow/refs/heads/master/vimium-snow.css",
+    "local": false
+  },
+  {
+    "name": "Nord",
+    "description": "Nord color palette theme",
+    "author": "darukutsu",
+    "url": "https://raw.githubusercontent.com/darukutsu/vimiumc-themes/refs/heads/main/themes-css/vimiumc-nord.css",
+    "local": false
+  },
+  {
+    "name": "Dracula",
+    "description": "Dracula theme for Vimium-C",
+    "author": "darukutsu",
+    "url": "https://raw.githubusercontent.com/darukutsu/vimiumc-themes/refs/heads/main/themes-css/vimiumc-dracula.css",
+    "local": false
+  },
+
+  {
+    "name": "Doom One",
+    "description": "Doom Emacs One theme",
+    "author": "darukutsu",
+    "url": "https://raw.githubusercontent.com/darukutsu/vimiumc-themes/refs/heads/main/themes-css/vimiumc-doom-one.css",
+    "local": false
+  },
+  {
+    "name": "Horizon",
+    "description": "Horizon theme",
+    "author": "darukutsu",
+    "url": "https://raw.githubusercontent.com/darukutsu/vimiumc-themes/refs/heads/main/themes-css/vimiumc-horizon.css",
+    "local": false
+  },
+  {
+    "name": "Material",
+    "description": "Material theme",
+    "author": "darukutsu",
+    "url": "https://raw.githubusercontent.com/darukutsu/vimiumc-themes/refs/heads/main/themes-css/vimiumc-material.css",
+    "local": false
+  },
+  {
+    "name": "Plain",
+    "description": "Plain minimal theme",
+    "author": "darukutsu",
+    "url": "https://raw.githubusercontent.com/darukutsu/vimiumc-themes/refs/heads/main/themes-css/vimiumc-plain.css",
+    "local": false
+  },
+  {
+    "name": "Solarized",
+    "description": "Solarized theme",
+    "author": "darukutsu",
+    "url": "https://raw.githubusercontent.com/darukutsu/vimiumc-themes/refs/heads/main/themes-css/vimiumc-solarized.css",
+    "local": false
+  },
+  {
+    "name": "Tokyo Storm",
+    "description": "Tokyo Night Storm theme",
+    "author": "darukutsu",
+    "url": "https://raw.githubusercontent.com/darukutsu/vimiumc-themes/refs/heads/main/themes-css/vimiumc-tokyo-storm.css",
+    "local": false
+  },
+  {
+    "name": "Tomorrow Night",
+    "description": "Tomorrow Night theme",
+    "author": "darukutsu",
+    "url": "https://raw.githubusercontent.com/darukutsu/vimiumc-themes/refs/heads/main/themes-css/vimiumc-tomorrow-night.css",
+    "local": false
+  },
+  {
+    "name": "Zenburn",
+    "description": "Zenburn theme",
+    "author": "darukutsu",
+    "url": "https://raw.githubusercontent.com/darukutsu/vimiumc-themes/refs/heads/main/themes-css/vimiumc-zenburn.css",
+    "local": false
+  }
+]

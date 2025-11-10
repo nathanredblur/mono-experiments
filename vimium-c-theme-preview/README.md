@@ -21,9 +21,10 @@ A real-time theme previewer for Vimium-C that allows you to edit CSS and see how
 ### Basic Usage
 
 1. Open `index.html` in your browser (or run a local server)
-2. Paste your CSS theme code in the left panel
-3. See the preview update in real-time on the right
-4. Use the "Load from URL" feature to load themes from GitHub
+2. **Quick Start**: Select a theme from the dropdown menu to instantly preview it
+3. **Custom Theme**: Paste your CSS theme code in the editor
+4. **Load from URL**: Use the URL input to load themes from GitHub
+5. See changes in real-time as you type or select themes
 
 ### Running with a Local Server
 
@@ -64,12 +65,55 @@ These components accept custom CSS through Vimium-C's "Custom CSS for Vimium C U
 - **Find Mode** - Runs in an isolated Shadow DOM/iframe and does NOT accept custom CSS
 - The find bar interface cannot be customized with themes
 
-## Example Themes
+## Included Themes
 
-Try these themes to see the previewer in action:
+The previewer comes with a curated collection of themes you can try instantly from the dropdown:
 
-- **Neuro Core** (included): `themes/neuro-core.css` - A dark theme with purple/blue accents
-- [Vimium Simply Dark](https://raw.githubusercontent.com/ysjn/vimium-simply-dark/master/vimium-simply-dark.css)
+### Featured Themes
+
+- **Neuro Core** (Local) - Dark theme with purple/blue accents and subtle animations
+- **Vimium Dark** by [Foldex](https://github.com/Foldex/vimium-dark-themes) - Classic dark theme
+- **Simply Dark** by [ysjn](https://github.com/ysjn/vimium-simply-dark) - Simple and clean dark theme
+- **Vimium Snow** by [dermoumi](https://github.com/dermoumi/vimium-snow) - Light theme with snowy aesthetics
+
+### Popular Community Themes
+
+From [darukutsu/vimiumc-themes](https://github.com/darukutsu/vimiumc-themes):
+
+- **Nord** - Nord color palette theme
+- **Dracula** - Dracula theme
+- **Gruvbox Dark** - Gruvbox dark theme
+- **Catppuccin Mocha** - Catppuccin Mocha theme
+- **Tokyo Night** - Tokyo Night theme
+- **Tokyo Storm** - Tokyo Night Storm variant
+- **One Dark** - Atom One Dark theme
+- **Doom One** - Doom Emacs One theme
+- **Horizon** - Horizon theme
+- **Material** - Material theme
+- **Plain** - Plain minimal theme
+- **Solarized** - Solarized theme
+- **Tomorrow Night** - Tomorrow Night theme
+- **Zenburn** - Zenburn theme
+
+**Total: 19 themes available** - All themes are loaded directly from their source repositories to ensure you get the latest version.
+
+## Custom Themes
+
+You can also:
+
+- Paste any Vimium-C theme CSS directly in the editor
+- Load themes from any GitHub repository URL
+- Create your own theme and test it in real-time
+
+### Creating Your Own Theme
+
+See [THEMES-GUIDE.md](THEMES-GUIDE.md) for:
+
+- Complete theme creation guide
+- CSS selectors reference
+- How to add themes to the dropdown
+- Best practices and troubleshooting
+- **Important**: Vimium-C doesn't support CSS variables (`:root`, `var()`)
 
 ## Components Previewed
 
