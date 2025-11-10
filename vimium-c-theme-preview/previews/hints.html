@@ -1,238 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Link Hints Preview</title>
     <style>
-      /* Base styles from vimium-c */
-      * {
-        box-sizing: border-box;
-      }
+/* Base hint styles from vimium-c.css */
+body {
+    margin: 0;
+    padding: 20px;
+    background: #fff;
+    font-family: "Helvetica Neue",Arial,sans-serif;
+}
 
-      body {
-        margin: 0;
-        padding: 20px;
-        background: transparent;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          Helvetica, Arial, sans-serif;
-      }
+.R {
+    background: none;
+    border: none;
+    box-sizing: content-box;
+    color: #000;
+    font: 12px/1 "Helvetica Neue", Arial, sans-serif;
+    pointer-events: none;
+    user-select: none;
+}
 
-      .R {
-        background: none;
-        border: none;
-        box-sizing: content-box;
-        cursor: auto;
-        float: none;
-        font-size-adjust: none;
-        letter-spacing: normal;
-        line-height-step: 0;
-        margin: 0;
-        opacity: 1;
-        outline: none;
-        padding: 0;
-        text-align-last: auto;
-        text-indent: 0;
-        text-shadow: none;
-        text-transform: none;
-        visibility: visible;
-        white-space: normal;
-        word-spacing: normal;
-        -webkit-writing-mode: horizontal-tb;
-        all: initial;
-        display: block;
-        text-align: left;
-        unicode-bidi: normal;
-        color: #000;
-        contain: layout style;
-        direction: ltr;
-        font: 12px/1 "Helvetica Neue", Arial, sans-serif;
-        pointer-events: none;
-        position: fixed;
-        user-select: none;
-        z-index: 2147483647;
-      }
+.HM {
+    font-weight: bold;
+    white-space: nowrap;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
 
-      .HM {
-        font-weight: bold;
-        position: absolute;
-        white-space: nowrap;
-      }
+.LH {
+    background: linear-gradient(#fff785,#ffc542);
+    border: 0.01px solid #e3be23;
+    border-radius: 3px;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.3);
+    box-sizing: border-box;
+    contain: layout style;
+    overflow: hidden;
+    padding: 2.5px 3px 2px;
+    /* Override absolute positioning for preview */
+    position: static !important;
+    display: inline-block;
+}
 
-      .LH {
-        background: linear-gradient(#fff785, #ffc542);
-        border: 0.01px solid #e3be23;
-        border-radius: 3px;
-        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
-        box-sizing: border-box;
-        contain: layout style;
-        overflow: hidden;
-        padding: 2.5px 3px 2px;
-        position: absolute;
-      }
+.MC, .MH {
+    color: #d4ac3a;
+}
 
-      .MC,
-      .MH {
-        color: #d4ac3a;
-      }
+.BH {
+    color: #902809;
+}
 
-      .BH {
-        color: #902809;
-      }
+/* Different hint types */
+.hint-input {
+    background: linear-gradient(#a8d0ff, #6ba3ff);
+    border-color: #3d7cc9;
+}
 
-      /* Container for preview */
-      .hints-container {
-        position: relative;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        align-items: center;
-        justify-content: flex-start;
-      }
+.hint-input .MC {
+    color: #1a4d80;
+}
 
-      .hints-container .LH {
-        position: static;
-        display: inline-block;
-        margin: 0;
-      }
+.hint-button {
+    background: linear-gradient(#ffb3d9, #ff80bf);
+    border-color: #ff4d94;
+}
 
-      /* Different hint types */
-      .hint-input {
-        background: linear-gradient(#a8d0ff, #6ba3ff);
-        border-color: #3d7cc9;
-      }
+.hint-button .MC {
+    color: #8b0045;
+}
 
-      .hint-button {
-        background: linear-gradient(#b8ffb8, #7aff7a);
-        border-color: #4fb84f;
-      }
+.hint-frame {
+    background: linear-gradient(#ffb380, #ff8c42);
+    border-color: #e67e22;
+}
 
-      .hint-frame {
-        background: linear-gradient(#ffb8b8, #ff7a7a);
-        border-color: #cc4444;
-      }
+.hint-frame .MC {
+    color: #8b4513;
+}
 
-      /* Legend styles */
-      .hints-legend {
-        margin-top: 20px;
-        padding: 15px;
-        background: rgba(255, 255, 255, 0.5);
-        border-radius: 8px;
-        border: 1px solid #e0e0e0;
-      }
+/* Legend */
+.hints-legend {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f5f5f5;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+}
 
-      .hints-legend h3 {
-        margin: 0 0 12px 0;
-        font-size: 14px;
-        font-weight: 600;
-        color: #333;
-      }
+.hints-legend h3 {
+    margin: 0 0 12px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    font-family: system-ui, sans-serif;
+    user-select: auto;
+}
 
-      .legend-items {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 16px;
-      }
+.legend-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
 
-      .legend-item {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-      }
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
 
-      .legend-hint {
-        background: linear-gradient(#fff785, #ffc542);
-        border: 0.01px solid #e3be23;
-        border-radius: 3px;
-        box-shadow: 0 2px 3px rgba(0, 0, 0, 0.2);
-        padding: 2.5px 6px 2px;
-        font: 12px/1 "Helvetica Neue", Arial, sans-serif;
-        font-weight: bold;
-        color: #000;
-      }
-
-      .legend-hint.hint-input {
-        background: linear-gradient(#a8d0ff, #6ba3ff);
-        border-color: #3d7cc9;
-      }
-
-      .legend-hint.hint-button {
-        background: linear-gradient(#b8ffb8, #7aff7a);
-        border-color: #4fb84f;
-      }
-
-      .legend-hint.hint-frame {
-        background: linear-gradient(#ffb8b8, #ff7a7a);
-        border-color: #cc4444;
-      }
-
-      .legend-hint .MC {
-        color: #d4ac3a;
-      }
-
-      .legend-hint.hint-input .MC {
-        color: #1a4d80;
-      }
-
-      .legend-hint.hint-button .MC {
-        color: #2d6b2d;
-      }
-
-      .legend-hint.hint-frame .MC {
-        color: #8b0000;
-      }
-
-      .legend-text {
-        font-size: 13px;
-        color: #555;
-      }
+.legend-text {
+    font-size: 13px;
+    color: #555;
+    font-family: system-ui, sans-serif;
+    user-select: auto;
+}
     </style>
     <style id="theme-style"></style>
-  </head>
-  <body>
+</head>
+<body>
     <div class="R HM">
-      <div class="hints-container">
-        <span class="LH" title="Link hint"> <span class="MC">A</span>S </span>
+        <span class="LH" title="Link hint">
+            <span class="MC">A</span>S
+        </span>
         <span class="LH hint-input" title="Input/Form hint">
-          <span class="MC">D</span>F
+            <span class="MC">D</span>F
         </span>
         <span class="LH hint-button" title="Button hint">
-          <span class="MC">F</span>G
+            <span class="MC">F</span>G
         </span>
         <span class="LH BH hint-frame" title="Frame hint">
-          <span class="MC">K</span>J
+            <span class="MC">K</span>J
         </span>
-        <span class="LH" title="Link hint"> <span class="MC">G</span>H </span>
-        <span class="LH" title="Link hint"> <span class="MC">H</span>J </span>
-      </div>
+        <span class="LH" title="Link hint">
+            <span class="MC">G</span>H
+        </span>
+        <span class="LH" title="Link hint">
+            <span class="MC">H</span>J
+        </span>
     </div>
 
     <div class="hints-legend">
-      <h3>Link Hint Types</h3>
-      <div class="legend-items">
-        <div class="legend-item">
-          <span class="legend-hint LH"><span class="MC">A</span>S</span>
-          <span class="legend-text">Link</span>
+        <h3>Link Hint Types</h3>
+        <div class="legend-items">
+            <div class="legend-item">
+                <span class="LH"><span class="MC">A</span>S</span>
+                <span class="legend-text">Link</span>
+            </div>
+            <div class="legend-item">
+                <span class="LH hint-input"><span class="MC">D</span>F</span>
+                <span class="legend-text">Input/Form</span>
+            </div>
+            <div class="legend-item">
+                <span class="LH hint-button"><span class="MC">F</span>G</span>
+                <span class="legend-text">Button</span>
+            </div>
+            <div class="legend-item">
+                <span class="LH BH hint-frame"><span class="MC">K</span>J</span>
+                <span class="legend-text">Frame</span>
+            </div>
         </div>
-        <div class="legend-item">
-          <span class="legend-hint LH hint-input"
-            ><span class="MC">D</span>F</span
-          >
-          <span class="legend-text">Input/Form</span>
-        </div>
-        <div class="legend-item">
-          <span class="legend-hint LH hint-button"
-            ><span class="MC">F</span>G</span
-          >
-          <span class="legend-text">Button</span>
-        </div>
-        <div class="legend-item">
-          <span class="legend-hint LH BH hint-frame"
-            ><span class="MC">K</span>J</span
-          >
-          <span class="legend-text">Frame</span>
-        </div>
-      </div>
     </div>
-  </body>
+</body>
 </html>

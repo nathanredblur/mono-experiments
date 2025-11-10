@@ -6,12 +6,12 @@ A real-time theme previewer for Vimium-C that allows you to edit CSS and see how
 
 - **Large CSS Editor**: Paste and edit your theme CSS in a large textarea with syntax highlighting
 - **Real-time Preview**: See changes instantly as you type
-- **All Components**: Preview all Vimium-C components on a single page:
+- **All Styleable Components**: Preview all customizable Vimium-C components:
   - Help Dialog
   - Vomnibar (search bar with results)
-  - Link Hints
-  - Find Mode
+  - Link Hints (with type legend)
   - HUD/Status Messages
+  - **Note**: Find Mode is NOT included as it runs in an isolated Shadow DOM and cannot be styled with custom CSS
 - **GitHub URL Loading**: Load themes directly from GitHub raw URLs
 - **Auto-save**: Your current theme is automatically saved to localStorage
 - **Accurate Rendering**: Uses the same HTML structure and CSS classes as the actual extension
@@ -45,6 +45,24 @@ You can load themes from GitHub by pasting either the GitHub URL or the raw URL:
 - **Raw URL**: `https://raw.githubusercontent.com/ysjn/vimium-simply-dark/master/vimium-simply-dark.css`
 
 The app will automatically convert GitHub URLs to raw URLs when loading.
+
+## What Can Be Styled?
+
+Vimium-C uses different DOM contexts for its components:
+
+### ✅ **Styleable Components** (included in preview):
+
+- **Help Dialog** - The keyboard shortcuts help overlay
+- **Vomnibar** - Search bar, results list, and toolbar
+- **Link Hints** - The letter hints that appear over clickable elements
+- **HUD** - Status messages that appear in the corner
+
+These components accept custom CSS through Vimium-C's "Custom CSS for Vimium C UI" setting.
+
+### ❌ **Non-Styleable Components** (not included):
+
+- **Find Mode** - Runs in an isolated Shadow DOM/iframe and does NOT accept custom CSS
+- The find bar interface cannot be customized with themes
 
 ## Example Themes
 
@@ -104,29 +122,59 @@ Here are the main selectors you'll want to customize:
 
 ```css
 /* Help Dialog */
-#HDlg { /* Main dialog container */ }
-.HelpKey { /* Keyboard shortcut keys */ }
-.HelpSectionTitle { /* Section headers */ }
+#HDlg {
+  /* Main dialog container */
+}
+.HelpKey {
+  /* Keyboard shortcut keys */
+}
+.HelpSectionTitle {
+  /* Section headers */
+}
 
 /* Vomnibar */
-#bar { /* Search input container */ }
-#input { /* Search input field */ }
-#list { /* Results list */ }
-.item { /* Individual result item */ }
-.item.b { /* Selected item */ }
+#bar {
+  /* Search input container */
+}
+#input {
+  /* Search input field */
+}
+#list {
+  /* Results list */
+}
+.item {
+  /* Individual result item */
+}
+.item.b {
+  /* Selected item */
+}
 
 /* Link Hints */
-.LH { /* Hint label */ }
-.MC { /* Matched character */ }
-.BH { /* Button hint */ }
+.LH {
+  /* Hint label */
+}
+.MC {
+  /* Matched character */
+}
+.BH {
+  /* Button hint */
+}
 
 /* Find Mode */
-.r { /* Find container */ }
-#i { /* Search term */ }
-#c { /* Match count */ }
+.r {
+  /* Find container */
+}
+#i {
+  /* Search term */
+}
+#c {
+  /* Match count */
+}
 
 /* HUD/Status */
-.HUD { /* Status message */ }
+.HUD {
+  /* Status message */
+}
 ```
 
 ### Tips for Theme Development
@@ -144,6 +192,7 @@ Works in all modern browsers (Chrome, Firefox, Safari, Edge).
 ## Contributing
 
 Feel free to submit pull requests with:
+
 - New example themes
 - Bug fixes
 - UI improvements

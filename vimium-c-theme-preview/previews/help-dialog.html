@@ -5,73 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Help Dialog Preview</title>
     <style>
-      /* Base styles from vimium-c */
-      * {
-        box-sizing: border-box;
-      }
-
+      /* Help Dialog styles - exact from vimium-c help_dialog.html */
+      html,
       body {
         margin: 0;
-        padding: 20px;
-        background: transparent;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-          Helvetica, Arial, sans-serif;
-      }
-
-      .R {
-        background: none;
-        border: none;
-        box-sizing: content-box;
-        cursor: auto;
-        float: none;
-        font-size-adjust: none;
-        letter-spacing: normal;
-        line-height-step: 0;
-        margin: 0;
-        opacity: 1;
-        outline: none;
         padding: 0;
-        text-align-last: auto;
-        text-indent: 0;
-        text-shadow: none;
-        text-transform: none;
-        visibility: visible;
-        white-space: normal;
-        word-spacing: normal;
-        -webkit-writing-mode: horizontal-tb;
+        background: transparent;
+        overflow: hidden;
+        height: 100%;
+      }
+
+      .R.H {
         all: initial;
-        display: block;
-        text-align: left;
-        unicode-bidi: normal;
-        color: #000;
-        contain: layout style;
-        direction: ltr;
-        font: 12px/1 "Helvetica Neue", Arial, sans-serif;
-        pointer-events: none;
-        position: fixed;
-        user-select: none;
-        z-index: 2147483647;
-      }
-
-      .DLG {
-        color-scheme: light;
+        contain: none;
         pointer-events: all;
-        position: fixed;
-      }
-
-      .DLG::backdrop {
-        background: #0000;
+        -webkit-user-select: auto;
+        user-select: auto;
+        display: block;
       }
 
       #HDlg {
-        background: #fff;
+        background: white;
         border: 1px solid #b3b3b3;
         border-radius: 8px;
         box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
         box-sizing: border-box;
         contain: content;
         line-height: 130%;
-        max-height: calc(100% - 114px);
         min-height: 25px;
         overflow: auto;
         overscroll-behavior: contain;
@@ -80,14 +40,17 @@
         -webkit-user-select: auto;
         user-select: auto;
         width: 100%;
-        max-width: 958px;
+        height: calc(100% - 20px);
+        margin: 10px;
         position: relative;
-        margin: 0 auto;
+      }
+
+      #HDlg:focus {
+        outline: none;
       }
 
       #HelpContent {
         width: 100%;
-        max-width: 920px;
       }
 
       #HelpBanner {
@@ -125,7 +88,6 @@
         color: inherit;
         table-layout: fixed;
         width: 100%;
-        max-width: 920px;
       }
 
       .HTablesTop {
@@ -152,6 +114,13 @@
         vertical-align: top;
       }
 
+      .HDivider {
+        border-bottom: 1px solid #ddd;
+        clear: both;
+        height: 1px;
+        margin: 10px 1px;
+      }
+
       .HelpKeys {
         clear: both;
         font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
@@ -175,21 +144,15 @@
         width: 100%;
       }
 
-      .HelpCommandName {
-        font-style: italic;
-        cursor: pointer;
-        font-size: 12px;
-      }
-
       .HelpSectionTitle {
         font-size: 16px;
-        font-weight: 700;
+        font-weight: bold;
         line-height: 24px;
       }
 
       .VimL {
         all: initial;
-        background: 0 0;
+        background: none;
         border: none;
         box-shadow: none;
         color: #15c;
@@ -204,13 +167,6 @@
         margin-right: 14px;
       }
 
-      .HDivider {
-        border-bottom: 1px solid #ddd;
-        clear: both;
-        height: 1px;
-        margin: 10px 1px;
-      }
-
       #HelpFooter {
         font-size: 13px;
         line-height: 16px;
@@ -221,89 +177,92 @@
     <style id="theme-style"></style>
   </head>
   <body>
-    <div class="R DLG" id="HDlg">
+    <div class="R H Scroll UI" id="HDlg" tabindex="0">
       <div id="HelpContent">
         <div id="HelpBanner">
-          <div id="HelpTitle">
-            <span class="Vim">Vim</span><span class="VimC">ium C</span
-            ><span class="title2"> - Help</span>
-          </div>
-          <div id="HelpLinks">
-            <a class="VimL TopLink" data-key="h">Commands</a>
-          </div>
+          <span id="HelpTitle">
+            <span class="Vim">Vim</span>ium
+            <span class="VimC">C</span>
+            <span class="title2"> - All by Keyboard</span>
+          </span>
+          <span id="HelpLinks">
+            <a class="VimL TopLink" href="#">Commands</a>
+          </span>
         </div>
         <div class="HDivider"></div>
-        <table class="HelpTables HTablesTop">
-          <tr>
-            <td class="HColumn">
-              <table class="HelpTable">
-                <tbody>
-                  <tr>
-                    <td colspan="2" class="HelpSectionTitle">Navigating</td>
-                  </tr>
-                  <tr>
-                    <td class="HelpTd HelpKeys">
-                      <kbd class="HelpKey">j</kbd>,
-                      <kbd class="HelpKey">s</kbd>
-                    </td>
-                    <td class="HelpTd">
-                      <span class="HelpCommandInfo">scroll down</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="HelpTd HelpKeys">
-                      <kbd class="HelpKey">k</kbd>,
-                      <kbd class="HelpKey">w</kbd>
-                    </td>
-                    <td class="HelpTd">
-                      <span class="HelpCommandInfo">scroll up</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="HelpTd HelpKeys">
-                      <kbd class="HelpKey">h</kbd>
-                    </td>
-                    <td class="HelpTd">
-                      <span class="HelpCommandInfo">scroll left</span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-            <td class="HColumn">
-              <table class="HelpTable">
-                <tbody>
-                  <tr>
-                    <td colspan="2" class="HelpSectionTitle">Using find</td>
-                  </tr>
-                  <tr>
-                    <td class="HelpTd HelpKeys">
-                      <kbd class="HelpKey">/</kbd>
-                    </td>
-                    <td class="HelpTd">
-                      <span class="HelpCommandInfo">enter find mode</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="HelpTd HelpKeys">
-                      <kbd class="HelpKey">n</kbd>
-                    </td>
-                    <td class="HelpTd">
-                      <span class="HelpCommandInfo">find next</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="HelpTd HelpKeys">
-                      <kbd class="HelpKey">N</kbd>
-                    </td>
-                    <td class="HelpTd">
-                      <span class="HelpCommandInfo">find previous</span>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </td>
-          </tr>
+        <table class="HelpTables">
+          <tbody>
+            <tr>
+              <td class="HTablesTop">
+                <table class="HelpTable">
+                  <tbody class="HColumn">
+                    <tr>
+                      <td class="HelpTd"></td>
+                      <td class="HelpTd HelpSectionTitle">
+                        Navigating the page
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <kbd class="HelpKey">j</kbd>
+                      </td>
+                      <td class="HelpTd">
+                        <span class="HelpCommandInfo">Scroll down</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <kbd class="HelpKey">k</kbd>
+                      </td>
+                      <td class="HelpTd">
+                        <span class="HelpCommandInfo">Scroll up</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <kbd class="HelpKey">h</kbd>
+                      </td>
+                      <td class="HelpTd">
+                        <span class="HelpCommandInfo">Scroll left</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="HTablesTop">
+                <table class="HelpTable">
+                  <tbody class="HColumn">
+                    <tr>
+                      <td class="HelpTd"></td>
+                      <td class="HelpTd HelpSectionTitle">
+                        Using the Vomnibar
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <kbd class="HelpKey">o</kbd>
+                      </td>
+                      <td class="HelpTd">
+                        <span class="HelpCommandInfo"
+                          >Open URL, bookmark, or history entry</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="HelpTd HelpKeys">
+                        <kbd class="HelpKey">O</kbd>
+                      </td>
+                      <td class="HelpTd">
+                        <span class="HelpCommandInfo"
+                          >Open URL, ... in a new tab</span
+                        >
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
         </table>
         <div id="HelpFooter">
           <p>Press <kbd class="HelpKey">?</kbd> to show help at any time.</p>
