@@ -108,7 +108,70 @@ a:visited, .VimL:visited { color: #ffe39b; }
 /* Selection color inside overlays */
 ::selection { background: #7e57c2 !important; color: #ffffff !important; }
 
-/* ====== DEMO LAYOUT HELPERS ====== */
-.demo-wrap { border: 1px dashed #2a2f48; padding: 12px; margin: 16px 0; }
-.hints-demo { position: relative; min-height: 220px; background: #0f1124; border: 1px solid #2a2f48; overflow: hidden; }
-.hints-demo .LH { position: absolute; padding: 4px 6px; border-radius: 4px; font-weight: 800; letter-spacing: 1.4px; }
+/* VOMNIBAR */
+.vomnibar-preview {
+  background: linear-gradient(135deg, #151836 0%, #0c0f26 100%) !important;
+  box-shadow: 0 4px 20px rgba(5, 6, 13, 0.9) !important;
+}
+
+.vomnibar-preview::after {
+  border-color: #2a2f48 !important;
+}
+
+#bar {
+  background: #0c0f26 !important;
+  border-bottom-color: #2a2f48 !important;
+}
+
+#input {
+  background: #0a0b15 !important;
+  border-color: #2a2f48 !important;
+  box-shadow: 0 0 1.5px #b56bff !important;
+  color: #f5f7ff !important;
+  font-family: "Inter", "JetBrains Mono", system-ui, sans-serif !important;
+}
+
+#toolbar {
+  color: #c7cfe6 !important;
+}
+
+.button {
+  color: inherit !important;
+}
+
+.button:hover {
+  background: rgba(181, 107, 255, 0.15) !important;
+  color: #b56bff !important;
+}
+
+#list {
+  background: #0a0b15 !important;
+}
+
+.item {
+  border-bottom-color: #2a2f48 !important;
+}
+
+.item:hover {
+  background-color: rgba(181, 107, 255, 0.08) !important;
+}
+
+.item.s, .item.b {
+  background-color: rgba(74, 163, 255, 0.15) !important;
+}
+
+.top {
+  color: #f5f7ff !important;
+}
+
+.icon {
+  fill: #c7cfe6 !important;
+}
+
+.label {
+  color: #ffd366 !important;
+}
+
+.bottom a {
+  color: #c7cfe6 !important;
+}

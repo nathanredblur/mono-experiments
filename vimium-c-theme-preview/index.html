@@ -1,658 +1,755 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vimium-C Theme Previewer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vimium-C Theme Previewer</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-
-<body>
-  <div class="container">
-    <!-- Left Panel: CSS Editor -->
-    <div class="editor-panel">
-      <div class="editor-header">
-        <h1>Vimium-C Theme Previewer</h1>
-        <div class="editor-controls">
-          <input type="text" id="theme-url-input" placeholder="GitHub URL or Raw URL" class="url-input">
-          <button id="load-url-btn" class="btn btn-primary">Load from URL</button>
-          <button id="reset-btn" class="btn btn-secondary">Reset</button>
-        </div>
-      </div>
-      <textarea id="css-editor" class="css-editor" placeholder="Paste your Vimium-C theme CSS here..."
-        spellcheck="false"></textarea>
-    </div>
-
-    <!-- Right Panel: Preview -->
-    <div class="preview-panel">
-      <div class="preview-container">
-        <!-- Help Dialog Preview -->
-        <section class="preview-section" id="help-preview">
-          <h2 class="section-title">Help Dialog</h2>
-          <div class="preview-wrapper">
-            <span class="R H">
-              <div class="R Scroll UI HelpDA" id="HDlg" tabindex="0">
-                <div id="HelpContent">
-                  <div id="HelpBanner">
-                    <span id="HelpTitle">
-                      <span class="Vim">Vim</span>ium
-                      <span class="VimC">C</span> - All by Keyboard
-                      <span class="title2">List of Commands</span>
-                    </span>
-                    <span id="HelpLinks">
-                      <a class="VimL TopLink" href="#" target="_blank">Wiki</a>
-                      <a class="VimL TopLink" href="#" target="_blank">Browser shortcuts</a>
-                      <button class="VimL TopLink" id="HCls" title="Close">✕</button>
-                    </span>
-                  </div>
-                  <div class="HDivider"></div>
-                  <table class="HelpTables">
-                    <tbody>
-                      <tr>
-                        <td class="HTablesTop">
-                          <table class="HelpTable">
-                            <tbody class="HColumn">
-                              <tr>
-                                <td class="HelpTd"></td>
-                                <td class="HelpTd HelpSectionTitle">Navigating the page</td>
-                              </tr>
-                              <tr>
-                                <td class="HelpTd HelpKeys">
-                                  <span class="HelpKey">f</span>
-                                </td>
-                                <td class="HelpTd HelpCommandInfo">
-                                  Open a link in the current tab
-                                  <span class="HelpCommandName">(LinkHints.activate)</span>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td class="HelpTd HelpKeys">
-                                  <span class="HelpKey">F</span>
-                                </td>
-                                <td class="HelpTd HelpCommandInfo">
-                                  Open a link in a new tab
-                                  <span class="HelpCommandName">(LinkHints.activateOpenInNewTab)</span>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td class="HelpTd HelpKeys">
-                                  <span class="HelpKey">j</span>
-                                </td>
-                                <td class="HelpTd HelpCommandInfo">
-                                  Scroll down
-                                  <span class="HelpCommandName">(scrollDown)</span>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td class="HelpTd HelpKeys">
-                                  <span class="HelpKey">k</span>
-                                </td>
-                                <td class="HelpTd HelpCommandInfo">
-                                  Scroll up
-                                  <span class="HelpCommandName">(scrollUp)</span>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </td>
-                        <td class="HTablesTop">
-                          <table class="HelpTable">
-                            <tbody class="HColumn">
-                              <tr>
-                                <td class="HelpTd"></td>
-                                <td class="HelpTd HelpSectionTitle">Using the Vomnibar</td>
-                              </tr>
-                              <tr>
-                                <td class="HelpTd HelpKeys">
-                                  <span class="HelpKey">o</span>
-                                </td>
-                                <td class="HelpTd HelpCommandInfo">
-                                  Open URL, bookmark, or history entry
-                                  <span class="HelpCommandName">(Vomnibar.activate)</span>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td class="HelpTd HelpKeys">
-                                  <span class="HelpKey">O</span>
-                                </td>
-                                <td class="HelpTd HelpCommandInfo">
-                                  Open URL in a new tab
-                                  <span class="HelpCommandName">(Vomnibar.activateInNewTab)</span>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td class="HelpTd HelpKeys">
-                                  <span class="HelpKey">b</span>
-                                </td>
-                                <td class="HelpTd HelpCommandInfo">
-                                  Open a bookmark
-                                  <span class="HelpCommandName">(Vomnibar.activateBookmarks)</span>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  <div class="HDivider"></div>
-                  <div id="HelpFooter">
-                    <div id="HelpTip">Tip: Click a command name to copy it to the clipboard.</div>
-                    <button class="VimL" id="HAdv">
-                      <span>Hide</span><span> advanced commands</span>
-                    </button>
-                    <div id="HelpVersion">Version 2.12.2</div>
-                  </div>
-                </div>
-              </div>
-            </span>
+  <body>
+    <div class="container">
+      <!-- Left Panel: CSS Editor -->
+      <div class="editor-panel">
+        <div class="editor-header">
+          <h1>Vimium-C Theme Previewer</h1>
+          <div class="editor-controls">
+            <input
+              type="text"
+              id="theme-url-input"
+              placeholder="GitHub URL or Raw URL"
+              class="url-input"
+            />
+            <button id="load-url-btn" class="btn btn-primary">
+              Load from URL
+            </button>
+            <button id="reset-btn" class="btn btn-secondary">Reset</button>
           </div>
-        </section>
+        </div>
+        <textarea
+          id="css-editor"
+          class="css-editor"
+          placeholder="Paste your Vimium-C theme CSS here..."
+          spellcheck="false"
+        ></textarea>
+      </div>
 
-        <!-- Vomnibar Preview -->
-        <section class="preview-section" id="vomnibar-preview">
-          <h2 class="section-title">Vomnibar</h2>
-          <div class="preview-wrapper">
-            <div class="mono-url inactive" data-mode="omni" style="position: relative;">
-              <div id="bar" class="no-query">
-                <input type="text" id="input" spellcheck="false" autocomplete="off" autocapitalize="off"
-                  inputmode="search" enterkeyhint="Go" placeholder="Search bookmarks, history, and open tabs...">
-                <div id="toolbar">
-                  <span role="button" class="button" id="toggle-dark" title="Toggle Dark">🌙</span>
-                  <span role="button" class="button" id="close" title="Close">✕</span>
-                </div>
-              </div>
-              <div id="list" class="no-query">
-                <div class="item" data-alt-index="1">
-                  <div class="top">
-                    <svg class="icon" viewBox="0 0 64 64">
-                      <path class="history"></path>
-                    </svg>
-                    <span class="title">Example Page Title - YouTube</span>
-                    <span class="label"><span class="undo">↶</span></span>
+      <!-- Right Panel: Preview -->
+      <div class="preview-panel">
+        <div class="preview-container">
+          <!-- Help Dialog Preview -->
+          <section class="preview-section" id="help-preview">
+            <h2 class="section-title">Help Dialog</h2>
+            <div class="preview-wrapper">
+              <span class="R H">
+                <div class="R Scroll UI HelpDA" id="HDlg" tabindex="0">
+                  <div id="HelpContent">
+                    <div id="HelpBanner">
+                      <span id="HelpTitle">
+                        <span class="Vim">Vim</span>ium
+                        <span class="VimC">C</span>
+                        <span class="title2">Commands</span>
+                      </span>
+                      <span id="HelpLinks">
+                        <a class="VimL TopLink" href="#" target="_blank"
+                          >Wiki</a
+                        >
+                        <button class="VimL TopLink" id="HCls" title="Close">
+                          ✕
+                        </button>
+                      </span>
+                    </div>
+                    <div class="HDivider"></div>
+                    <table class="HelpTables">
+                      <tbody>
+                        <tr>
+                          <td class="HTablesTop">
+                            <table class="HelpTable">
+                              <tbody class="HColumn">
+                                <tr>
+                                  <td class="HelpTd"></td>
+                                  <td class="HelpTd HelpSectionTitle">
+                                    Navigating the page
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td class="HelpTd HelpKeys">
+                                    <span class="HelpKey">f</span>
+                                  </td>
+                                  <td class="HelpTd HelpCommandInfo">
+                                    Open a link
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td class="HelpTd HelpKeys">
+                                    <span class="HelpKey">j</span>
+                                  </td>
+                                  <td class="HelpTd HelpCommandInfo">
+                                    Scroll down
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                          <td class="HTablesTop">
+                            <table class="HelpTable">
+                              <tbody class="HColumn">
+                                <tr>
+                                  <td class="HelpTd"></td>
+                                  <td class="HelpTd HelpSectionTitle">
+                                    Vomnibar
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td class="HelpTd HelpKeys">
+                                    <span class="HelpKey">o</span>
+                                  </td>
+                                  <td class="HelpTd HelpCommandInfo">
+                                    Open URL
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td class="HelpTd HelpKeys">
+                                    <span class="HelpKey">b</span>
+                                  </td>
+                                  <td class="HelpTd HelpCommandInfo">
+                                    Open bookmark
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
                   </div>
-                  <div class="bottom"><a>www.example.com/page</a></div>
                 </div>
-                <div class="item" data-alt-index="2">
-                  <div class="top">
-                    <svg class="icon" viewBox="0 0 64 64">
-                      <path class="history"></path>
-                    </svg>
-                    <span class="title">Another Example Page</span>
-                    <span class="label"><span class="undo">↶</span></span>
+              </span>
+            </div>
+          </section>
+
+          <!-- Vomnibar Preview -->
+          <section class="preview-section compact" id="vomnibar-preview">
+            <h2 class="section-title">Vomnibar</h2>
+            <div class="preview-wrapper">
+              <div class="vomnibar-preview">
+                <div id="bar">
+                  <input
+                    type="text"
+                    id="input"
+                    spellcheck="false"
+                    autocomplete="off"
+                    autocapitalize="off"
+                    inputmode="search"
+                    enterkeyhint="Go"
+                    value="Search bookmarks, history..."
+                  />
+                  <div id="toolbar">
+                    <span
+                      role="button"
+                      class="button"
+                      id="toggle-dark"
+                      title="Toggle Dark"
+                    >
+                      <svg class="btn_svg" viewBox="0 0 20 20">
+                        <path
+                          class="i-moon"
+                          d="M5.4 3A7.2 7.3 0 1 1 5.4 17A6.4 7 0 1 0 5.4 3z"
+                        ></path>
+                        <circle class="i-sun" cx="10" cy="10" r="3.2"></circle>
+                        <path
+                          class="i-sun"
+                          d="M2 10h2m6 6v2m6-8h2M10 2v2M4.3 4.3l1.4 1.4M15.7 4.3l-1.4 1.4M4.3 15.7l1.4-1.4M14.3 14.3l1.4 1.4"
+                        ></path>
+                      </svg>
+                    </span>
+                    <span role="button" class="button" id="close" title="Close">
+                      <svg class="btn_svg" viewBox="0 0 20 20">
+                        <path d="M6 6l8 8zM6 14L14 6"></path>
+                      </svg>
+                    </span>
                   </div>
-                  <div class="bottom"><a>www.example.com/another</a></div>
                 </div>
-                <div class="item b" data-alt-index="0">
-                  <div class="top">
-                    <svg class="icon" viewBox="0 0 64 64">
-                      <path class="history"></path>
-                    </svg>
-                    <span class="title">Selected Item Example</span>
-                    <span class="label"><span class="undo">↶</span></span>
+                <div id="list">
+                  <div class="item">
+                    <div class="top">
+                      <svg class="icon" viewBox="0 0 64 64">
+                        <path
+                          class="history"
+                          d="M8 10.8A32 32 0 1 1 0 32h6a26 26 1 1 0 6.25-17L20 23H0V3zM28 18v21l15 8 4-5-13-7V18"
+                        ></path>
+                      </svg>
+                      <span class="title">Example Page Title</span>
+                      <span class="label"><span class="undo">↶</span></span>
+                    </div>
+                    <div class="bottom"><a>www.example.com/page</a></div>
                   </div>
-                  <div class="bottom"><a>www.example.com/selected</a></div>
+                  <div class="item s b">
+                    <div class="top">
+                      <svg class="icon" viewBox="0 0 64 64">
+                        <path
+                          class="history"
+                          d="M8 10.8A32 32 0 1 1 0 32h6a26 26 1 1 0 6.25-17L20 23H0V3zM28 18v21l15 8 4-5-13-7V18"
+                        ></path>
+                      </svg>
+                      <span class="title">Selected Item</span>
+                      <span class="label"><span class="undo">↶</span></span>
+                    </div>
+                    <div class="bottom"><a>www.example.com/selected</a></div>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <!-- Hints Preview -->
-        <section class="preview-section" id="hints-preview">
-          <h2 class="section-title">Link Hints</h2>
-          <div class="preview-wrapper hints-wrapper">
-            <span>
-              <div class="R HUD">Open link in current tab</div>
-              <div class="R HM" style="position: relative; min-height: 200px;">
-                <span class="LH" style="left: 20px; top: 20px;" data-type="link">
+          <!-- Hints Preview -->
+          <section class="preview-section compact" id="hints-preview">
+            <h2 class="section-title">Link Hints</h2>
+            <div class="preview-wrapper hints-wrapper">
+              <div
+                class="R HUD"
+                style="
+                  position: relative;
+                  bottom: auto;
+                  right: auto;
+                  margin: 0 0 10px 0;
+                "
+              >
+                Open link in current tab
+              </div>
+              <div class="R HM" style="position: relative; min-height: 100px">
+                <span class="LH" style="left: 10px; top: 10px">
                   <span class="MC">A</span>S
                 </span>
-                <span class="LH" style="left: 100px; top: 20px;" data-type="input">
-                  <span class="MC">B</span>D
+                <span class="LH" style="left: 60px; top: 10px">
+                  <span class="MC">S</span>D
                 </span>
-                <span class="LH" style="left: 180px; top: 20px;" data-type="button">
-                  <span class="MC">C</span>F
+                <span class="LH" style="left: 110px; top: 10px">
+                  <span class="MC">D</span>F
                 </span>
-                <span class="LH" style="left: 260px; top: 20px;" data-type="link">
-                  <span class="MC">D</span>G
+                <span class="LH" style="left: 160px; top: 10px">
+                  <span class="MC">F</span>G
                 </span>
-                <span class="LH active" style="left: 20px; top: 60px;" data-type="link">
-                  <span class="MC">E</span>H
+                <span class="LH" style="left: 10px; top: 40px">
+                  <span class="MC">J</span>H
                 </span>
-                <span class="LH" style="left: 100px; top: 60px;" data-type="frame">
-                  <span class="MC">F</span>J
-                </span>
-                <span class="LH BH" style="left: 180px; top: 100px;">
-                  <span class="MC">G</span>K
+                <span class="LH BH" style="left: 60px; top: 40px">
+                  <span class="MC">K</span>J
                 </span>
               </div>
-            </span>
-          </div>
-        </section>
-
-        <!-- Find Mode Preview -->
-        <section class="preview-section" id="find-preview">
-          <h2 class="section-title">Find Mode</h2>
-          <div class="preview-wrapper">
-            <div class="r" spellcheck="false">
-              <span id="s"></span>
-              <span id="i" contenteditable="plaintext-only">search term</span>
-              <span id="h"></span>
-              <span id="c" data-vimium="(9 matches)"></span>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <!-- HUD Preview -->
-        <section class="preview-section" id="hud-preview">
-          <h2 class="section-title">HUD / Status Messages</h2>
-          <div class="preview-wrapper">
-            <div class="R HUD">Status message example</div>
-            <div class="R TEE">Another status message</div>
-          </div>
-        </section>
+          <!-- Find Mode Preview -->
+          <section class="preview-section compact" id="find-preview">
+            <h2 class="section-title">Find Mode</h2>
+            <div class="preview-wrapper">
+              <div class="r" spellcheck="false">
+                <span id="s"></span>
+                <span id="i" contenteditable="plaintext-only">search</span>
+                <span id="h"></span>
+                <span id="c" data-vimium="(9 matches)"></span>
+              </div>
+            </div>
+          </section>
+
+          <!-- HUD Preview -->
+          <section class="preview-section compact" id="hud-preview">
+            <h2 class="section-title">HUD</h2>
+            <div class="preview-wrapper">
+              <div class="R HUD">Status message</div>
+            </div>
+          </section>
+        </div>
       </div>
     </div>
-  </div>
 
-  <!-- Style tag for dynamic theme injection -->
-  <style id="theme-style"></style>
+    <!-- Style tag for dynamic theme injection -->
+    <style id="theme-style"></style>
 
-  <!-- Base Vimium-C styles (from vimium-c.css) -->
-  <style id="base-vimium-styles">
-    .R {
-      all: initial;
-      color: #000;
-      contain: layout style;
-      direction: ltr;
-      font: 12px/1 "Helvetica Neue", Arial, sans-serif;
-      pointer-events: none;
-      position: fixed;
-      user-select: none;
-      z-index: 2147483647;
-    }
+    <!-- Base Vimium-C styles (from vimium-c.css) -->
+    <style id="base-vimium-styles">
+      .R {
+        all: initial;
+        color: #000;
+        contain: layout style;
+        direction: ltr;
+        font: 12px/1 "Helvetica Neue", Arial, sans-serif;
+        pointer-events: none;
+        position: fixed;
+        user-select: none;
+        z-index: 2147483647;
+      }
 
-    .R.H {
-      all: initial;
-      contain: none;
-      pointer-events: all;
-      -webkit-user-select: auto;
-      user-select: auto;
-    }
+      .R.H {
+        all: initial;
+        contain: none;
+        pointer-events: all;
+        -webkit-user-select: auto;
+        user-select: auto;
+      }
 
-    #HDlg {
-      background: #fff;
-      border: 1px solid #b3b3b3;
-      border-radius: 8px;
-      box-shadow: 0 0 6px rgba(0, 0, 0, .4);
-      box-sizing: border-box;
-      contain: content;
-      line-height: 130%;
-      max-height: calc(100% - 114px);
-      min-height: 25px;
-      overflow: auto;
-      overscroll-behavior: contain;
-      padding: 8px 6px 0 18px;
-      scrollbar-gutter: stable;
-      -webkit-user-select: auto;
-      user-select: auto;
-      width: 100%;
-      max-width: 958px;
-      position: relative;
-      margin: 0 auto;
-    }
+      #HDlg {
+        background: #fff;
+        border: 1px solid #b3b3b3;
+        border-radius: 8px;
+        box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+        box-sizing: border-box;
+        contain: content;
+        line-height: 130%;
+        max-height: calc(100% - 114px);
+        min-height: 25px;
+        overflow: auto;
+        overscroll-behavior: contain;
+        padding: 8px 6px 0 18px;
+        scrollbar-gutter: stable;
+        -webkit-user-select: auto;
+        user-select: auto;
+        width: 100%;
+        max-width: 958px;
+        position: relative;
+        margin: 0 auto;
+      }
 
-    #HelpContent {
-      width: 100%;
-      max-width: 920px;
-    }
+      #HelpContent {
+        width: 100%;
+        max-width: 920px;
+      }
 
-    #HelpBanner {
-      height: 26px;
-      padding: 3px;
-    }
+      #HelpBanner {
+        height: 26px;
+        padding: 3px;
+      }
 
-    #HelpTitle {
-      font-size: 20px;
-      line-height: 130%;
-    }
+      #HelpTitle {
+        font-size: 20px;
+        line-height: 130%;
+      }
 
-    #HelpLinks {
-      float: right;
-      position: relative;
-      top: 7px;
-      font-size: 0;
-    }
+      #HelpLinks {
+        float: right;
+        position: relative;
+        top: 7px;
+        font-size: 0;
+      }
 
-    .Vim {
-      color: #2f508e;
-    }
+      .Vim {
+        color: #2f508e;
+      }
 
-    .VimC {
-      color: #a55e18;
-    }
+      .VimC {
+        color: #a55e18;
+      }
 
-    .title2 {
-      font-size: 16px;
-      padding-left: 8px;
-    }
+      .title2 {
+        font-size: 16px;
+        padding-left: 8px;
+      }
 
-    .HelpTables {
-      border-spacing: 0;
-      color: inherit;
-      table-layout: fixed;
-      width: 100%;
-      max-width: 920px;
-    }
+      .HelpTables {
+        border-spacing: 0;
+        color: inherit;
+        table-layout: fixed;
+        width: 100%;
+        max-width: 920px;
+      }
 
-    .HTablesTop {
-      vertical-align: top;
-    }
+      .HTablesTop {
+        vertical-align: top;
+      }
 
-    .HelpTable {
-      border-collapse: separate;
-      border-spacing: 5.5px 3px;
-      color: inherit;
-      contain: content;
-      line-height: 130%;
-      word-break: normal;
-    }
+      .HelpTable {
+        border-collapse: separate;
+        border-spacing: 5.5px 3px;
+        color: inherit;
+        contain: content;
+        line-height: 130%;
+        word-break: normal;
+      }
 
-    .HColumn {
-      white-space: normal;
-      font: 12px/1 "Helvetica Neue", Arial, sans-serif;
-    }
+      .HColumn {
+        white-space: normal;
+        font: 12px/1 "Helvetica Neue", Arial, sans-serif;
+      }
 
-    .HelpTd {
-      line-height: 19.2px;
-      padding: 0;
-      vertical-align: top;
-    }
+      .HelpTd {
+        line-height: 19.2px;
+        padding: 0;
+        vertical-align: top;
+      }
 
-    .HelpKeys {
-      clear: both;
-      font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      text-align: right;
-      white-space: nowrap;
-    }
+      .HelpKeys {
+        clear: both;
+        font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
+          monospace;
+        text-align: right;
+        white-space: nowrap;
+      }
 
-    .HelpKey {
-      background-color: #f3f3f3;
-      border: 1px solid #ccc;
-      border-bottom: 2px solid #bbb;
-      border-radius: 3px;
-      padding: 1px 4px 0;
-    }
+      .HelpKey {
+        background-color: #f3f3f3;
+        border: 1px solid #ccc;
+        border-bottom: 2px solid #bbb;
+        border-radius: 3px;
+        padding: 1px 4px 0;
+      }
 
-    .HelpCommandInfo {
-      font-size: 14px;
-      word-break: break-word;
-      overflow-wrap: anywhere;
-      width: 100%;
-    }
+      .HelpCommandInfo {
+        font-size: 14px;
+        word-break: break-word;
+        overflow-wrap: anywhere;
+        width: 100%;
+      }
 
-    .HelpCommandName {
-      font-style: italic;
-      cursor: pointer;
-      font-size: 12px;
-    }
+      .HelpCommandName {
+        font-style: italic;
+        cursor: pointer;
+        font-size: 12px;
+      }
 
-    .HelpSectionTitle {
-      font-size: 16px;
-      font-weight: 700;
-      line-height: 24px;
-    }
+      .HelpSectionTitle {
+        font-size: 16px;
+        font-weight: 700;
+        line-height: 24px;
+      }
 
-    .VimL {
-      all: initial;
-      background: 0 0;
-      border: none;
-      box-shadow: none;
-      color: #15c;
-      cursor: pointer;
-      font: inherit;
-      padding: 0;
-      text-decoration: underline;
-    }
+      .VimL {
+        all: initial;
+        background: 0 0;
+        border: none;
+        box-shadow: none;
+        color: #15c;
+        cursor: pointer;
+        font: inherit;
+        padding: 0;
+        text-decoration: underline;
+      }
 
-    .TopLink {
-      font-size: 14px;
-      margin-right: 14px;
-    }
+      .TopLink {
+        font-size: 14px;
+        margin-right: 14px;
+      }
 
-    .HDivider {
-      border-bottom: 1px solid #ddd;
-      clear: both;
-      height: 1px;
-      margin: 10px 1px;
-    }
+      .HDivider {
+        border-bottom: 1px solid #ddd;
+        clear: both;
+        height: 1px;
+        margin: 10px 1px;
+      }
 
-    #HelpFooter {
-      font-size: 13px;
-      line-height: 16px;
-      margin-bottom: 10px;
-      position: relative;
-    }
+      #HelpFooter {
+        font-size: 13px;
+        line-height: 16px;
+        margin-bottom: 10px;
+        position: relative;
+      }
 
-    /* Vomnibar styles - from vimium-c default */
-    #bar {
-      background: #fff;
-      border: 1px solid #b3b3b3;
-      border-radius: 8px;
-      box-shadow: 0 0 6px rgba(0, 0, 0, .4);
-      box-sizing: border-box;
-      padding: 10px 30px 10px 10px;
-      position: relative;
-      width: 100%;
-      max-width: 600px;
-      margin: 0 auto;
-    }
+      /* Vomnibar styles - from vimium-c original */
+      .vomnibar-preview {
+        background: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 7px 0.5px rgba(0, 0, 0, 0.8);
+        contain: content;
+        margin: 0;
+        overflow: hidden;
+        padding: 0;
+        position: relative;
+        white-space: nowrap;
+      }
 
-    #input {
-      width: 100%;
-      border: none;
-      outline: none;
-      font-size: 14px;
-      padding: 0;
-      background: transparent;
-      color: #000;
-    }
+      .vomnibar-preview::after {
+        border: 0.5px solid #555;
+        border-radius: 5px;
+        bottom: 0;
+        content: "";
+        left: 0;
+        pointer-events: none;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
 
-    #toolbar {
-      position: absolute;
-      right: 10px;
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      gap: 5px;
-    }
+      #bar {
+        background: #f1f1f1;
+        border-bottom: 1px dashed #ccc;
+        border-radius: 4px 4px 0 0;
+        contain: strict;
+        font-size: 0;
+        height: 34px;
+        padding: 10px;
+      }
 
-    .button {
-      cursor: pointer;
-      padding: 5px;
-      display: inline-block;
-      color: #666;
-    }
+      #input {
+        background: #fff;
+        border: 0.5px solid #e8e8e8;
+        border-radius: 3px;
+        box-shadow: 0 0 1.5px #444;
+        box-sizing: border-box;
+        color: #000;
+        contain: strict;
+        font-size: 20px;
+        height: 34px;
+        outline: none;
+        padding: 4px 9.5px;
+        width: 100%;
+      }
 
-    .button:hover {
-      color: #000;
-    }
+      #toolbar {
+        color: #999;
+        opacity: 0;
+        padding-right: 8px;
+        position: absolute;
+        right: 9px;
+        top: 17px;
+        transition: opacity 120ms 80ms;
+      }
 
-    #list {
-      background: #fff;
-      border: 1px solid #b3b3b3;
-      border-radius: 8px;
-      box-shadow: 0 0 6px rgba(0, 0, 0, .4);
-      margin-top: 10px;
-      max-height: 400px;
-      overflow-y: auto;
-      width: 100%;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-      padding: 0;
-    }
+      #toolbar:hover,
+      .inactive #toolbar {
+        opacity: 1;
+      }
 
-    .item {
-      padding: 10px;
-      border-bottom: 1px solid #eee;
-      cursor: pointer;
-    }
+      .button {
+        contain: strict;
+        cursor: default;
+        display: inline-block;
+        fill: currentColor;
+        height: 20px;
+        margin-left: 8px;
+        stroke: currentColor;
+        width: 20px;
+      }
 
-    .item:hover,
-    .item.b {
-      background: #f5f5f5;
-    }
+      .button:hover {
+        background: rgba(255, 255, 255, 0.8);
+        color: #666;
+      }
 
-    .item .top {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+      .btn_svg {
+        width: 20px;
+        height: 20px;
+      }
 
-    .item .icon {
-      width: 16px;
-      height: 16px;
-      background: #ccc;
-      border-radius: 2px;
-      flex-shrink: 0;
-    }
+      #toggle-dark {
+        stroke-linecap: round;
+        stroke-linejoin: bevel;
+      }
 
-    .item .title {
-      flex: 1;
-      color: #333;
-    }
+      .i-moon {
+        fill: none;
+        stroke-width: 1.4;
+      }
 
-    .item .label {
-      color: #999;
-    }
+      .i-sun {
+        stroke-width: 2.1;
+        visibility: hidden;
+      }
 
-    .item .bottom {
-      margin-top: 5px;
-      font-size: 12px;
-      color: #666;
-    }
+      #close {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        stroke-width: 2.4;
+      }
 
-    .item .bottom a {
-      color: #666;
-      text-decoration: none;
-    }
+      #list {
+        border-radius: 0 0 4px 4px;
+        contain: content;
+      }
 
-    /* Hints styles - from vimium-c default */
-    .HM {
-      font-weight: bold;
-      position: relative;
-      white-space: nowrap;
-    }
+      .item {
+        border-bottom: 0.5px solid #ddd;
+        box-sizing: border-box;
+        contain: strict;
+        height: 44px;
+        padding: 4px 20px 0;
+      }
 
-    .LH {
-      background: linear-gradient(#fff785, #ffc542);
-      border: 0.01px solid #e3be23;
-      border-radius: 3px;
-      box-shadow: 0 3px 5px #0000004d;
-      box-sizing: border-box;
-      contain: layout style;
-      overflow: hidden;
-      padding: 2.5px 3px 2px;
-      position: absolute;
-      font-weight: bold;
-    }
+      .item.b {
+        border-bottom-style: none;
+        border-radius: 0 0 4px 4px;
+        height: 46px;
+      }
 
-    .LH .MC {
-      color: #d4ac3a;
-    }
+      .item:hover {
+        background-color: #cddbef;
+        border-style: none;
+      }
 
-    .BH {
-      color: #902809;
-    }
+      .item.s {
+        background-color: #bed1ea;
+        border-style: none;
+      }
 
-    .HUD,
-    .TEE {
-      bottom: -1px;
-      font-size: 14px;
-      height: 20px;
-      line-height: 16px;
-      max-width: 336px;
-      min-width: 152px;
-      overflow: hidden;
-      padding: 4px 4px 1px;
-      right: 152px;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      position: relative;
-      margin: 10px 0;
-      width: fit-content;
-    }
+      .top {
+        height: 20px;
+        overflow: hidden;
+        font: 16px/20px "Helvetica Neue", Arial, "PingFang SC",
+          "Hiragino Sans GB", "Microsoft YaHei", "Heiti SC",
+          "WenQuanYi Micro Hei", sans-serif;
+      }
 
-    .HUD:after {
-      background: #eee;
-      border-radius: 4px 4px 0 0;
-      border: 0.01px solid #bbb;
-      content: "";
-      position: absolute;
-      z-index: -1;
-      box-sizing: border-box;
-      height: 100%;
-      left: 0;
-      top: 0;
-      width: 100%;
-    }
+      .icon {
+        background: 20px 0/16px no-repeat;
+        fill: #999;
+        height: 16px;
+        margin: 1.5px 4px 0 0;
+        padding-right: 20px;
+        width: 16px;
+        vertical-align: top;
+      }
 
-    /* Find mode styles - from vimium-c default */
-    .r {
-      all: initial;
-      background: #fff;
-      border-radius: 3px 3px 0 0;
-      box-shadow: inset 0 0 1.5px 1px #aaa;
-      color: #000;
-      cursor: text;
-      display: flex;
-      height: 21px;
-      padding: 4px 4px 0;
-      position: relative;
-      margin: 10px 0;
-      width: fit-content;
-      font: 14px/16px "Helvetica Neue", Arial, sans-serif;
-    }
+      .label {
+        color: #999;
+        display: inline-block;
+        font-size: 14px;
+        font-weight: normal;
+      }
 
-    #s {
-      flex: 0 0 4px;
-      color: #666;
-    }
+      .undo {
+        font-family: sans-serif, STIXGeneral;
+      }
 
-    #s::after {
-      content: "/";
-    }
+      .bottom {
+        height: 18px;
+        line-height: 14px;
+        margin-left: 20px;
+        overflow: hidden;
+      }
 
-    #i {
-      flex: 0 1 auto;
-      height: 16px;
-      min-width: 9px;
-      margin-left: 2px;
-      overflow: hidden;
-      padding: 0 2px 0 0;
-      color: #000;
-    }
+      .bottom a {
+        color: #3b517d;
+        cursor: default;
+        font: 14px/18px "Helvetica Neue", Arial, sans-serif;
+        text-decoration: none;
+      }
 
-    #h {
-      flex: 1 0 auto;
-    }
+      .title > match {
+        color: #000;
+        font-weight: bold;
+        text-decoration: underline;
+      }
 
-    #c {
-      flex: 0 0 auto;
-      margin-left: 2px;
-      color: #666;
-    }
+      /* Hints styles - from vimium-c default */
+      .HM {
+        font-weight: bold;
+        position: relative;
+        white-space: nowrap;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        font-size: 12px;
+        line-height: 1;
+      }
 
-    #c::after {
-      content: attr(data-vimium);
-      display: inline;
-    }
-  </style>
+      .LH {
+        background: linear-gradient(180deg, #fff785 0%, #ffc542 100%);
+        border: 0.01px solid #e3be23;
+        border-radius: 3px;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+        box-sizing: border-box;
+        contain: layout style;
+        overflow: hidden;
+        padding: 2.5px 3px 2px;
+        position: absolute;
+        font-weight: bold;
+        font-family: monospace;
+        font-size: 11px;
+        color: #000;
+        text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
+      }
 
-  <script src="app.js"></script>
-</body>
+      .LH .MC {
+        color: #d4ac3a;
+      }
 
+      .BH {
+        background: linear-gradient(180deg, #ffb380 0%, #ff8c42 100%);
+        border-color: #e67e22;
+        color: #902809;
+      }
+
+      .HUD,
+      .TEE {
+        bottom: -1px;
+        font-size: 14px;
+        height: 20px;
+        line-height: 16px;
+        max-width: 336px;
+        min-width: 152px;
+        overflow: hidden;
+        padding: 4px 4px 1px;
+        right: 152px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        position: relative;
+        margin: 10px 0;
+        width: fit-content;
+      }
+
+      .HUD:after {
+        background: #eee;
+        border-radius: 4px 4px 0 0;
+        border: 0.01px solid #bbb;
+        content: "";
+        position: absolute;
+        z-index: -1;
+        box-sizing: border-box;
+        height: 100%;
+        left: 0;
+        top: 0;
+        width: 100%;
+      }
+
+      /* Find mode styles - from vimium-c default */
+      .r {
+        all: initial;
+        background: #fff;
+        border-radius: 3px 3px 0 0;
+        box-shadow: inset 0 0 1.5px 1px #aaa;
+        color: #000;
+        cursor: text;
+        display: flex;
+        height: 21px;
+        padding: 4px 4px 0;
+        position: relative;
+        margin: 10px 0;
+        width: fit-content;
+        font: 14px/16px "Helvetica Neue", Arial, sans-serif;
+      }
+
+      #s {
+        flex: 0 0 4px;
+        color: #666;
+      }
+
+      #s::after {
+        content: "/";
+      }
+
+      #i {
+        flex: 0 1 auto;
+        height: 16px;
+        min-width: 9px;
+        margin-left: 2px;
+        overflow: hidden;
+        padding: 0 2px 0 0;
+        color: #000;
+      }
+
+      #h {
+        flex: 1 0 auto;
+      }
+
+      #c {
+        flex: 0 0 auto;
+        margin-left: 2px;
+        color: #666;
+      }
+
+      #c::after {
+        content: attr(data-vimium);
+        display: inline;
+      }
+    </style>
+
+    <script src="app.js"></script>
+  </body>
 </html>
