@@ -1,0 +1,288 @@
+# Cursor Rules for mono-experiments
+
+## Project Context
+
+This is a **monorepo** containing multiple experimental projects. Each project is self-contained within its own directory.
+
+### Important Git Considerations
+
+- **DO NOT** initialize git repositories within individual project folders
+- The entire workspace is already a git repository
+- All commits should be made at the root level
+- When creating commit messages, use the branch name prefix format:
+  - If branch is `mny-12345-my-branch`
+  - Commit should be `MNY-12345: my summary of changes`
+
+---
+
+## Astro Projects
+
+### Standard Installation Procedure
+
+When creating a new Astro project, **ALWAYS** use the official CLI installer:
+
+```bash
+NODE_TLS_REJECT_UNAUTHORIZED=0 pnpm dlx create-astro@latest . --template with-tailwindcss --install --add react --git --no
+```
+
+**Command Breakdown**:
+
+- `NODE_TLS_REJECT_UNAUTHORIZED=0` - Bypass TLS certificate validation if needed
+- `pnpm dlx` - Execute the package without global installation
+- `create-astro@latest` - Use the latest version of create-astro
+- `.` - Install in the current directory (create project folder first)
+- `--template with-tailwindcss` - Use Tailwind CSS template
+- `--install` - Automatically install dependencies
+- `--add react` - Add React integration
+- `--git --no` - Skip git initialization (monorepo already has git)
+
+**Important Notes**:
+
+- The target directory should be **empty** before running this command
+- Create a new folder for your project first: `mkdir my-project && cd my-project`
+- If the folder contains files (like a README.md), you have these options:
+  1. **Recommended**: Temporarily move existing files, run create-astro, then move them back
+  2. Create in a temp folder and move files: `mkdir temp && cd temp && <run command> && mv * ../ && cd .. && rmdir temp`
+  3. Use `--force` or `--overwrite` flags if available in your version (check `pnpm dlx create-astro --help`)
+
+**Workaround for Non-Empty Directory**:
+
+```bash
+# If you have a .md file or other docs in the folder
+mkdir temp-astro
+cd temp-astro
+NODE_TLS_REJECT_UNAUTHORIZED=0 pnpm dlx create-astro@latest . --template with-tailwindcss --install --add react --git --no
+mv * ../
+mv .* ../ 2>/dev/null || true
+cd ..
+rmdir temp-astro
+```
+
+**DO NOT**:
+
+- Create Astro project files manually
+- Use `npm` or `yarn` (prefer `pnpm` for this workspace)
+- Forcefully overwrite important existing files
+
+### Astro Best Practices
+
+1. **Project Structure**
+
+   - Keep components in `src/components/`
+   - Utilities and libraries in `src/lib/`
+   - Styles in `src/styles/`
+   - Public assets in `public/`
+
+2. **TypeScript**
+
+   - Use TypeScript for all logic files
+   - Define proper interfaces and types
+   - Avoid `any` types when possible
+
+3. **Component Organization**
+
+   - Use `.astro` files for static/server-rendered components
+   - Use React (`.tsx`) for interactive client components
+   - Mark client components with `client:load`, `client:visible`, or `client:idle` directives
+
+4. **Performance**
+
+   - Minimize client-side JavaScript
+   - Use Astro components when interactivity isn't needed
+   - Optimize images with Astro's Image component
+   - Lazy load components when appropriate
+
+5. **Styling**
+   - Use Tailwind CSS for utility-first styling
+   - Create custom CSS files for complex component styles
+   - Utilize CSS variables for theming
+   - Follow a consistent design system
+
+---
+
+## Testing
+
+### Default Behavior
+
+- **DO NOT** create test files unless explicitly requested by the user
+- Testing is opt-in, not automatic
+
+### When Testing is Required
+
+- Use **Vitest** as the testing framework
+- Install with: `pnpm add -D vitest @vitest/ui`
+- Place tests next to the files they test or in a `__tests__` directory
+- Use `.test.ts` or `.spec.ts` naming convention
+
+Example test setup:
+
+```typescript
+import { describe, it, expect } from "vitest";
+
+describe("Component", () => {
+  it("should work", () => {
+    expect(true).toBe(true);
+  });
+});
+```
+
+---
+
+## Code Style
+
+### General Principles
+
+1. Write clean, readable code
+2. Use descriptive variable and function names
+3. Keep functions small and focused
+4. Comment complex logic
+5. Follow the existing code style in each project
+
+### TypeScript/JavaScript
+
+- Use modern ES6+ syntax
+- Prefer `const` over `let`, avoid `var`
+- Use arrow functions for callbacks
+- Destructure objects and arrays when appropriate
+- Use async/await over promises chains
+
+### React Components
+
+- Use functional components with hooks
+- Keep components focused on a single responsibility
+- Extract reusable logic into custom hooks
+- Use proper prop types (TypeScript interfaces)
+
+---
+
+## Dependencies
+
+### Installation
+
+- Use `pnpm` for package management
+- Install dev dependencies with `-D` flag
+- Keep dependencies up to date but stable
+
+### Common Libraries by Use Case
+
+- **Styling**: TailwindCSS (default), clsx, tailwind-merge
+- **State Management**: Zustand, Jotai, or React Context
+- **Forms**: React Hook Form, Zod for validation
+- **Data Fetching**: Fetch API, Axios (if needed)
+- **Icons**: Lucide React, Heroicons
+- **Animations**: Framer Motion, GSAP
+
+---
+
+## File Naming Conventions
+
+- **Components**: PascalCase (e.g., `Button.astro`, `UserCard.tsx`)
+- **Utilities**: camelCase (e.g., `formatDate.ts`, `apiHelpers.ts`)
+- **Types**: PascalCase with `.types.ts` suffix (e.g., `User.types.ts`)
+- **Constants**: UPPER_SNAKE_CASE or camelCase in a `constants.ts` file
+- **Styles**: kebab-case (e.g., `button-styles.css`, `theme-variables.css`)
+
+---
+
+## Project-Specific Styles
+
+### Neuro Core Design System
+
+When working on projects with Neuro Core aesthetic:
+
+**Color Palette**:
+
+- Primary: Deep blue (#1E40AF, #3B82F6)
+- Secondary: Vibrant purple (#7C3AED, #A78BFA)
+- Accent: Cyan (#06B6D4)
+- Neutral: Dark slate (#0F172A, #1E293B, #334155)
+- Background: Near-black with blue tint (#0A0E1A)
+
+**Visual Elements**:
+
+- Rounded corners with subtle radius (4-8px)
+- Neon glow effects on hover using box-shadow
+- Glassmorphism panels with backdrop-blur
+- Gradient borders using border-image or pseudo-elements
+- Smooth transitions (200-300ms ease-in-out)
+
+**Typography**:
+
+- Modern sans-serif: Inter, Outfit, Space Grotesk, Manrope
+- Variable font weights for hierarchy
+- Clear contrast and readability
+
+---
+
+## Performance Guidelines
+
+1. **Bundle Size**
+
+   - Keep client-side JavaScript minimal
+   - Code split large components
+   - Use dynamic imports when appropriate
+
+2. **Images**
+
+   - Optimize before committing
+   - Use WebP format when possible
+   - Implement proper alt text
+   - Use Astro's Image component for optimization
+
+3. **SEO**
+   - Include meta tags in page head
+   - Use semantic HTML
+   - Implement proper heading hierarchy
+
+---
+
+## Documentation
+
+- **DO NOT** create documentation files unless explicitly requested
+- Keep README files concise and up to date
+- Document complex algorithms or business logic
+- Use JSDoc comments for public APIs
+
+---
+
+## Debugging
+
+1. Use `console.log()` during development (remove before committing)
+2. Use browser DevTools for client-side debugging
+3. Check Astro's dev server output for build errors
+4. Verify TypeScript types are correct
+
+---
+
+## Environment Variables
+
+- Store sensitive data in `.env` files (never commit these)
+- Use `.env.example` to document required variables
+- Prefix Astro public variables with `PUBLIC_`
+- Access in Astro: `import.meta.env.VARIABLE_NAME`
+
+---
+
+## Version Control
+
+### Commits
+
+- Write clear, descriptive commit messages
+- Use the branch prefix format (see top of file)
+- Keep commits atomic and focused
+- Don't commit build artifacts or node_modules
+
+### Branches
+
+- Create feature branches from main/master
+- Use descriptive branch names: `feature/add-login`, `fix/button-hover`
+- Delete branches after merging
+
+---
+
+## Additional Notes
+
+- This is an experimental monorepo, so feel free to try new approaches
+- Prioritize developer experience and code maintainability
+- Ask questions when requirements are unclear
+- Have fun experimenting! 🚀
