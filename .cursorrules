@@ -162,6 +162,10 @@ describe("Component", () => {
 - Use `pnpm` for package management
 - Install dev dependencies with `-D` flag
 - Keep dependencies up to date but stable
+- **Important**: If you encounter TLS certificate validation errors, use:
+  ```bash
+  NODE_TLS_REJECT_UNAUTHORIZED=0 pnpm add <package-name>
+  ```
 
 ### Common Libraries by Use Case
 
