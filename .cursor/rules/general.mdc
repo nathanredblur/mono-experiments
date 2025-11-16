@@ -1,0 +1,80 @@
+---
+alwaysApply: true
+---
+
+# Project Rules - Monorepo
+
+## Base Language and Technologies
+
+- **ALWAYS use TypeScript** in all code files
+- **ALWAYS read the `package.json`** before making any changes to determine the technologies used in the project
+
+## Tailwind CSS v4
+
+### Detection and Usage
+
+- If the project includes Tailwind CSS, **ONLY use Tailwind** for styling (no inline CSS or other solutions)
+- **ALWAYS use Tailwind CSS v4**, which works differently from v3
+
+### Tailwind v4 Configuration
+
+- Use the Vite plugin: `@tailwindcss/vite`
+- Configuration in `vite.config.ts`:
+
+  ```typescript
+  import { defineConfig } from "vite";
+  import tailwindcss from "@tailwindcss/vite";
+
+  export default defineConfig({
+    plugins: [tailwindcss()],
+  });
+  ```
+
+### Tailwind v4 Import
+
+- In the main CSS file, use:
+  ```css
+  @import "tailwindcss";
+  ```
+- **DO NOT use** `@tailwind base;`, `@tailwind components;`, `@tailwind utilities;` (this is v3 syntax)
+
+### Key v4 Differences
+
+1. **Does not require `tailwind.config.js` file** by default
+2. **Native Vite plugin** instead of PostCSS
+3. **Simplified import** with `@import "tailwindcss"`
+4. **Automatic file scanning** without additional configuration
+
+## Monorepo Structure
+
+- Respect the existing folder structure
+- Check dependencies in each workspace before making changes
+- Maintain consistency across monorepo packages
+
+## Best Practices
+
+### TypeScript
+
+- Use strict types
+- Avoid `any`, prefer `unknown` when necessary
+- Define interfaces for props and data
+
+### Components
+
+- Functional components with TypeScript
+- Typed props with interfaces
+- Use composition over inheritance
+
+### Styling with Tailwind
+
+- Use Tailwind utility classes
+- Avoid custom styles unless absolutely necessary
+- Use Tailwind responsive variants (`sm:`, `md:`, `lg:`, etc.)
+- Leverage state classes (`hover:`, `focus:`, `active:`, etc.)
+
+## Before Each Change
+
+1. Read the `package.json` of the corresponding workspace
+2. Verify the Tailwind version (must be v4)
+3. Confirm the project structure
+4. Respect existing code conventions
