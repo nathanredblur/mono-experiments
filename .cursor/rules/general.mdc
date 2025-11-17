@@ -45,6 +45,65 @@ alwaysApply: true
 3. **Simplified import** with `@import "tailwindcss"`
 4. **Automatic file scanning** without additional configuration
 
+### Color System & Theme Variables
+
+**CRITICAL RULES FOR COLORS**:
+
+1. **NEVER use arbitrary values** like `text-[#c7cfe6]`, `hover:bg-[rgba(167,139,250,0.1)]`
+2. **ALWAYS use theme variables** defined in `global.css`
+3. **Use Tailwind's color scale** when available (e.g., `bg-purple-500`, `text-slate-700`)
+
+#### Custom Theme Colors (global.css)
+
+Define custom colors in `@theme inline`:
+
+```css
+@theme inline {
+  /* Custom color scale */
+  --color-purple-500: #a78bfa;
+  --color-purple-600: #7c3aed;
+  
+  /* Theme variables */
+  --color-primary: var(--primary);
+  --color-accent: var(--accent);
+}
+```
+
+#### Usage Examples
+
+**✅ CORRECT**:
+```tsx
+// Use theme variables
+<div className="bg-primary text-primary-foreground">
+<div className="border-border hover:bg-accent">
+
+// Use Tailwind color scale
+<div className="bg-purple-600 text-slate-700">
+<div className="hover:bg-purple-500/40"> {/* opacity modifier */}
+
+// Use custom defined colors
+<div className="bg-slate-800 border-purple-500">
+```
+
+**❌ INCORRECT**:
+```tsx
+// Never use arbitrary values for colors
+<div className="text-[#c7cfe6]">
+<div className="hover:bg-[rgba(167,139,250,0.1)]">
+<div className="min-w-[80px]"> {/* size values are OK if not in theme */}
+```
+
+#### When to Define New Colors
+
+1. Check if color exists in Tailwind's default palette
+2. Check if color is defined in `global.css` theme
+3. If not, add it to `@theme inline` in `global.css`
+4. Then use it with proper Tailwind classes
+
+**Resources**:
+- [Tailwind v4 Colors](https://tailwindcss.com/docs/colors)
+- [Customizing Theme](https://tailwindcss.com/docs/theme#customizing-your-theme)
+
 ## Monorepo Structure
 
 - Respect the existing folder structure
@@ -72,9 +131,71 @@ alwaysApply: true
 - Use Tailwind responsive variants (`sm:`, `md:`, `lg:`, etc.)
 - Leverage state classes (`hover:`, `focus:`, `active:`, etc.)
 
+## shadcn/ui Components
+
+### Component System
+
+- **ALWAYS use shadcn/ui** for UI components when available
+- Install components on-demand: `pnpm dlx shadcn@latest add <component-name>`
+- Components are copied to `src/components/ui/` and fully customizable
+- **Official Component List**: https://ui.shadcn.com/docs/components
+
+### Installation Examples
+
+```bash
+# Install Button component
+pnpm dlx shadcn@latest add button
+
+# Install multiple components
+pnpm dlx shadcn@latest add button dialog card
+```
+
+### Component Usage
+
+- Import from `@/components/ui/component-name`
+- Components use Tailwind CSS v4 and are pre-styled
+- Customize via Tailwind classes or by editing the component file
+- Use `cn()` utility from `@/lib/utils` for conditional classes
+
+### Icons with Lucide
+
+- **ALWAYS use Lucide React** for icons
+- Already included as `lucide-react` dependency
+- **Icon Directory**: https://www.shadcn.io/icons/lucide (1,636+ icons)
+
+```typescript
+import { Heart, Star, Download } from 'lucide-react';
+
+<Heart className="w-4 h-4" />
+<Star className="w-5 h-5 text-yellow-500" />
+```
+
+### Best Practices
+
+- Check if component exists in shadcn before creating custom
+- Maintain consistent styling across all shadcn components
+- Use component variants when available (e.g., `variant="outline"`)
+- Keep icon sizes consistent (typically `w-4 h-4` or `w-5 h-5`)
+
+## Node.js Version Management
+
+### proto
+
+- Use `proto` for Node.js version management
+- Version specified in `.node-version` file at project root
+- Install specific version: `proto install node <version>`
+
+### Node.js Versions
+
+- **Current LTS**: Node.js 24.11.0 (Krypton)
+- Check version: `node -v`
+- Projects should specify `.node-version` file
+
 ## Before Each Change
 
 1. Read the `package.json` of the corresponding workspace
 2. Verify the Tailwind version (must be v4)
-3. Confirm the project structure
-4. Respect existing code conventions
+3. Check if shadcn component exists before creating custom UI
+4. Confirm the project structure
+5. Respect existing code conventions
+6. Use Lucide icons from `lucide-react` package
