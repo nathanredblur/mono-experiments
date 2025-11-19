@@ -242,10 +242,18 @@ When working on projects with Neuro Core aesthetic:
 
 ## Documentation
 
-- **DO NOT** create documentation files unless explicitly requested
+- **DO NOT** create documentation files unless explicitly requested by the user
 - Keep README files concise and up to date
 - Document complex algorithms or business logic
 - Use JSDoc comments for public APIs
+
+---
+
+## Development Workflow
+
+- **DO NOT** run `pnpm run build` or `pnpm run dev` commands
+- The user will run these commands manually
+- Focus on code implementation and let the user handle testing and building
 
 ---
 
