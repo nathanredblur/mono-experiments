@@ -137,6 +137,7 @@ describe("Component", () => {
 3. Keep functions small and focused
 4. Comment complex logic
 5. Follow the existing code style in each project
+6. **ALWAYS write comments and UI text in English** - Never use Spanish or other languages in code comments, variable names, or user-facing text
 
 ### TypeScript/JavaScript
 
@@ -145,6 +146,9 @@ describe("Component", () => {
 - Use arrow functions for callbacks
 - Destructure objects and arrays when appropriate
 - Use async/await over promises chains
+- **All code comments must be in English**
+- **All variable/function names must be in English**
+- **All user-facing text must be in English**
 
 ### React Components
 
