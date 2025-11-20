@@ -182,6 +182,142 @@ describe("Component", () => {
 
 ---
 
+## State Management with Zustand
+
+### Best Practices
+
+1. **Components Should Consume Store Directly**
+
+   - ✅ Components should use `useStore()` hooks directly
+   - ❌ Avoid passing store state as props unless necessary
+   - ✅ Only pass props for parent-specific callbacks or computed values
+
+2. **Smart Store Actions**
+   - ✅ Store actions should be self-contained and intelligent
+   - ✅ Actions should use `selectedId ?? state.selectedId` pattern for optional parameters
+   - ✅ Actions should validate internally (don't rely on components to validate)
+   - ❌ Avoid creating wrapper functions that only validate before calling store actions
+
+**Example - Bad Practice:**
+
+```typescript
+// ❌ BAD: Wrapper function that only validates
+const handleDelete = () => {
+  if (selectedLayerId) {
+    deleteLayer(selectedLayerId);
+  }
+};
+
+// Store action
+deleteLayer: (id: string) => {
+  // ... logic
+};
+```
+
+**Example - Good Practice:**
+
+```typescript
+// ✅ GOOD: Call store action directly
+<button onClick={() => deleteLayer()}>Delete</button>;
+
+// Store action is smart and self-contained
+deleteLayer: (id?: string) => {
+  const state = get();
+  const layerId = id ?? state.selectedLayerId;
+  if (!layerId) {
+    logger.warn("No layer selected to delete");
+    return;
+  }
+  // ... logic
+};
+```
+
+3. **When to Create Wrapper Functions**
+
+✅ **DO create wrapper when:**
+
+- Adding side effects (toasts, analytics, logging)
+- Combining multiple store actions
+- Transforming data before calling store
+- Adding UI-specific logic (confirmations, animations)
+
+```typescript
+// ✅ GOOD: Wrapper adds value with toast notification
+const handleCopyLayer = () => {
+  copyLayer();
+  if (selectedLayerId) {
+    toast.success("Layer copied");
+  }
+};
+
+// ✅ GOOD: Wrapper combines multiple actions
+const handleDeleteWithConfirm = async () => {
+  const confirmed = await confirmDialog("Delete?");
+  if (confirmed) {
+    deleteLayer();
+    toast.success("Deleted");
+  }
+};
+```
+
+❌ **DON'T create wrapper when:**
+
+- Only validating `if (id)` before calling
+- Only passing through the same value from store
+- Function is a simple "pass-through" with no added value
+
+```typescript
+// ❌ BAD: No added value, just validation
+const handleMoveToFront = () => {
+  if (selectedLayerId) {
+    moveLayerToFront(selectedLayerId);
+  }
+};
+
+// ✅ GOOD: Call directly instead
+<button onClick={() => moveLayerToFront()}>
+```
+
+4. **Store Action Patterns**
+
+```typescript
+// Pattern for actions that work on selected item or specific item
+actionName: (id?: string) => {
+  const state = get();
+  const itemId = id ?? state.selectedItemId;
+
+  if (!itemId) {
+    logger.warn("useStore", "No item selected for action");
+    return;
+  }
+
+  // ... perform action logic
+
+  logger.info("useStore", "Action completed", { itemId });
+};
+```
+
+5. **Component Integration**
+
+```typescript
+// ✅ GOOD: Component consumes store directly
+function MyComponent() {
+  const items = useStore((state) => state.items);
+  const selectedId = useStore((state) => state.selectedId);
+  const deleteItem = useStore((state) => state.deleteItem);
+  const copyItem = useStore((state) => state.copyItem);
+
+  const handleCopy = () => {
+    copyItem(); // No id needed, uses selectedId internally
+    toast.success("Copied!");
+  };
+
+  return <button onClick={handleCopy}>Copy</button>;
+}
+```
+
+---
+
 ## File Naming Conventions
 
 - **Components**: PascalCase (e.g., `Button.astro`, `UserCard.tsx`)
