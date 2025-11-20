@@ -150,6 +150,67 @@ describe("Component", () => {
 - **All variable/function names must be in English**
 - **All user-facing text must be in English**
 
+#### Enums for Specific Values
+
+**CRITICAL RULE**: When you have parameters or state that can only have a specific set of string values, **ALWAYS use TypeScript enums** instead of string literals or union types.
+
+**❌ BAD - Magic Strings:**
+
+```typescript
+// Scattered string literals throughout the code
+setActivePanel("image-uploader");
+if (panel === "text-tool") { ... }
+activePanel === "canvas-settings"
+```
+
+**❌ BAD - Union Types Only:**
+
+```typescript
+type ActivePanel = "image-uploader" | "text-tool" | "canvas-settings" | null;
+// Still requires magic strings when using
+setActivePanel("image-uploader");
+```
+
+**✅ GOOD - Enum with Descriptive Names:**
+
+```typescript
+// Define enum once
+export enum ActivePanel {
+  ImagePanel = "imagePanel",
+  TextPanel = "textPanel",
+  CanvasSettings = "canvasSettings",
+  PrintSettings = "printSettings",
+}
+
+// Use throughout the application
+setActivePanel(ActivePanel.ImagePanel);
+if (panel === ActivePanel.TextPanel) { ... }
+activePanel === ActivePanel.CanvasSettings
+```
+
+**Benefits:**
+
+1. **Type Safety**: Autocompletion and compile-time validation
+2. **Refactoring**: Rename values safely across the entire codebase
+3. **Discoverability**: IDE shows all available options
+4. **Maintainability**: Single source of truth for valid values
+5. **No Typos**: Impossible to use invalid string values
+6. **Export**: Can be imported and used across modules
+
+**When to Use Enums:**
+
+- UI state values (active panel, tool, mode)
+- Status values (loading, success, error)
+- Action types (add, edit, delete)
+- Configuration options with fixed choices
+- Any parameter that accepts only specific predefined values
+
+**Naming Convention:**
+
+- Enum name: PascalCase (e.g., `ActivePanel`, `UserRole`, `RequestStatus`)
+- Enum values: PascalCase for keys (e.g., `ImagePanel`, `AdminRole`, `Pending`)
+- String values: camelCase (e.g., `"imagePanel"`, `"adminRole"`, `"pending"`)
+
 ### React Components
 
 - Use functional components with hooks
